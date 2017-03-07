@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<style>
+
+ul {
+	list-style: none;
+	margin: 0 auto;
+	width: 500px;
+}
+
+li {
+	width: 500px;
+	border: 1px solid orange;
+	margin-top: 10px;
+}	
+
+span {
+	color: orange;
+	margin-left: 10px;
+}
+	
+</style>		
+		
+	</head>
+	<body>
+		
+		<ul id="list">
+			<!--<li>
+				<h4>小明...</h4>
+				<span>50人评论</span>
+				<span>50人点赞</span>
+			</li>-->
+			
+		</ul>
+
+<script>
+
+var oUl = document.getElementById("list");
+
+// 1、创建ajax对象
+var req = new XMLHttpRequest();
+
+// 2、准备
+req.open("GET", "http://127.0.0.1:8080/ajax/weibo", true);
+
+// 3、
+req.send();
+
+req.onreadystatechange = function() {
+	if (req.readyState == 4 && req.status == 200) {
+		var str = req.responseText;
+		
+		var arr = JSON.parse(str);
+		
+		for (var i = 0; i < arr.length; i++) {
+			// arr[i].content;
+			
+//			<li>
+//				<h4>小明...</h4>
+//				<span>50人评论</span>
+//				<span>50人点赞</span>
+//			</li>
+
+			var oLi = document.createElement("li");
+			
+			var oH4 = document.createElement("h4");
+			var oSpan1 = document.createElement("span");
+			var oSpan2 = document.createElement("span");
+			
+			oH4.innerHTML = arr[i].content;
+			oSpan1.innerHTML = arr[i].comtcnt + "人评论";
+			oSpan2.innerHTML = arr[i].likecnt + "人点赞";
+			
+			oLi.appendChild(oH4);
+			oLi.appendChild(oSpan1);
+			oLi.appendChild(oSpan2);
+			
+			oUl.appendChild(oLi);
+		}
+	}
+}
+
+	
+</script>
+
+	</body>
+</html>

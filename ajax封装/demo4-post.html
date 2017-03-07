@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+// 【练习】 使用 POST方式 向服务器发送请求，验证用户名
+
+
+// 1、创建对象
+var req = new XMLHttpRequest();
+
+// 2、准备
+//     POST 代表请求数据的方式
+req.open("POST", "http://127.0.0.1:8080/ajax/checkname", true);
+
+// post 提交数据，需要修改下协议的请求头
+req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+// 3、发送
+// 【注意】如果使用 post 方式发送数据给服务器，数据是写在 send () 中
+req.send("regname=zhangsan");
+
+// 4、获取数据
+req.onreadystatechange = function() {
+	
+	if (req.readyState == 4 && req.status == 200) {
+		console.log(req.responseText);
+	}
+}
+
+
+//GET 与 POST 方式的区别和联系
+// 相同点： 都可以向服务器发送请求，提交数据
+// 区别：   GET:  数据写在地址后面  ，   不安全，    数据量有限 ，       传输速度快   
+//      POST: 数据写在 send()，  安全性高 ，  数据量没有限制， 传输速度慢
+
+// 什么时候使用 GET， 什么时候 POST！
+//  服务器规定到底使用什么方式请求数据！
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

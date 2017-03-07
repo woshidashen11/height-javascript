@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+
+onload = function() {
+	
+	
+	var oBtn = document.getElementsByTagName("button")[0];
+	
+	oBtn.onclick = function() {
+	
+		// 1、创建对象
+		//  2005 发现的
+		//  其实在 1995 netscape  2000左右，已经存在 ajax这个对象
+		var req = new XMLHttpRequest();
+		
+		// 2、准备
+		//   true 代表异步
+		req.open("GET", "http://127.0.0.1:8080/ajax/ajaxtest", true);
+		
+		// 3、发送
+		req.send();
+		
+		// 4、获取数据
+		//   在 请求状态值 发生改变时
+		req.onreadystatechange = function() {
+			alert(req.responseText);
+			if (req.readyState == 4) {
+				console.log( req.responseText ); // 弹出返回的数据
+			}
+		}
+		
+		// 为什么写在后面的代码，先执行了？
+		//  因为： ajax 向服务器发送数据，通过网络是需要时间的
+		//       ajax 是异步的方式，那么当我们发送请求的时候，就不会阻止主线程的执行
+		//  所以，先输出了主线程的语句, 然后一段时间后，收到服务器的数据了，所以接着输出了服务器的数据
+		
+//		这是主线程的输出！
+//		中秋节还在上课的，都是好同志
+		console.log("这是主线程的输出！");
+	}
+}
+
+
+
+</script>		
+		
+	</head>
+	<body>
+		
+		<button>请求服务器的数据</button>
+		
+		<marquee>滚来滚去！</marquee>
+		
+	</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	
+<script>
+
+// http://127.0.0.1:8080/json/person.json
+
+//XMLHttpRequest cannot load 
+//  http://127.0.0.1:8080/json/person.json. No 'Access-Control-Allow-Origin' header is present on the requested resource.
+// Origin 'http://127.0.0.1:8020' is therefore not allowed access.
+
+// ajax 遵循“同源策略” 确保安全
+// 同源： 协议、域名、端口 一致的情况下，就是同源，否则就是跨域
+//   http://www.baidu.com      http://www.google.com      不同源
+//  http://127.0.0.1:8020      http://127.0.0.1:8080      不同源
+//  http://127.0.0.1           http://localhost           不同源 (因为域名)
+//  weibo.sina.com             t.sina.com                 不同源
+
+
+
+onload = function() {
+						
+	// 得到TBody
+	var oTBody = document.getElementsByTagName("TBody")[0];
+
+	var oBtn = document.getElementsByTagName("button")[0];
+	
+	oBtn.onclick = function() {
+		// 向服务器请求最新的数据
+		
+		// 1、创建
+		var req = new XMLHttpRequest();
+		
+		// 2、准备
+		req.open("GET", "http://127.0.0.1:8080/json/person.json", true);
+		
+		// 3、发送
+		req.send();
+		
+		// 4、获取数据
+
+		req.onreadystatechange = function() {
+			alert(req.responseText);
+			if (req.readyState == 4) {
+				// 这里服务器返回数据，可返回的数据还不知道是不是对的。
+				
+				// req.status HTTP状态码
+				//    404   --> 找不到这个页面，服务器没有资源
+				//    500   --> 服务器出现故障了
+				//    200   --> 正常情况
+		
+				if (req.status == 200) {
+				alert(req.responseText);
+					
+					var str = req.responseText;
+					
+					var arr = JSON.parse(str);
+					
+					for (var i = 0; i < arr.length; i++) {
+						// arr[i] 是一个对象，代表一个人
+						
+						// 创建 tr
+						var oTr = document.createElement("tr");
+						var oTd = document.createElement("td");
+						
+						
+						oTd.innerHTML = arr[i].name; // 姓名
+						
+						oTr.appendChild(oTd);
+						oTBody.appendChild(oTr);
+					}
+					
+
+					
+					// 创建 tr
+//					var oTr = document.createElement("tr");
+//					var oTd = document.createElement("td");
+//					var oTd2 = document.createElement("td");
+//
+//					// arr[0] 是一个对象
+//					// arr[0].name
+//					// 将 td 中的内容设置 成 名字
+//					oTd.innerHTML = arr[0].name; //姓名
+//					oTd2.innerHTML = arr[0].age; // 年龄
+//					
+//					oTr.appendChild(oTd);
+//					oTr.appendChild(oTd2);
+//					
+//					// 得到TBody
+//					var oTBody = document.getElementsByTagName("TBody")[0];
+//
+//					oTBody.appendChild(oTr);
+				}
+				
+			}
+		}
+	}
+}
+
+</script>
+		
+	</head>
+	<body>
+		
+		<marquee>滚来滚去</marquee>
+		
+		<button>请求数据</button>
+		
+		
+		<table border="1">
+			<thead>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>电话</th>
+				<th>地址</th>
+				<th>QQ</th>
+			</thead>
+			<tbody>
+				<!--<tr>
+					<td>张三</td>
+					<td>18</td>
+				</tr>-->
+			</tbody>
+		</table>
+		
+	</body>
+</html>

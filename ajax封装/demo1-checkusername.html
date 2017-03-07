@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+<script>
+
+// 用户名输入完成之后，检查用户名是否已经注册。
+
+//服务器地址：http://127.0.0.1:8080/ajax/checkname
+
+// 使用 GET 方式，向服务器提交了一个参数， regname 值是 zhangsan
+//  按照服务器的要求传入，服务器就可以得到 这个数据
+// http://127.0.0.1:8080/ajax/checkname?regname=zhangsan
+// http://127.0.0.1:8080/ajax/checkname?regname=abc
+
+// 提交2个参数：
+// http://127.0.0.1:8080/ajax/checkname?regname=abc&psw=123
+//    提交了 regname: abc,  psw 是 123
+
+
+// 提交3个或者多个参数：
+// http://127.0.0.1:8080/ajax/checkname?regname=abc&psw=123&sex=boy
+
+
+
+// regname 是服务器规定好的
+
+onload = function() {
+	
+	// 得到输入框节点
+	var oInput = document.getElementById("username");
+	
+	// 绑定一个失去焦的事件
+
+	oInput.onblur = function() {
+		
+		// 通过创建 ajax 向服务器提交用户名
+		
+		var req = new XMLHttpRequest();
+		
+		var url = "http://127.0.0.1:8080/ajax/checkname?regname="+oInput.value+"";
+		req.open("GET", url, true);
+		
+		req.send();
+		
+		req.onreadystatechange = function() {
+			if (req.readyState == 4 && req.status == 200) {
+				
+//				console.log(req.responseText);
+				var str = req.responseText;
+				
+				if (str == "yes") {
+					// 说明已经注册
+					alert("已注册!");
+				} else {
+					alert("没有注册!");
+				}
+			}
+		}
+	}
+
+}
+
+</script>
+		
+	</head>
+	<body>
+		
+		<form>
+			用户名： <input id="username" type="text" /> 
+					<span> 可以注册 </span>
+			<br>
+			密码： <input type="password" />
+		</form>
+
+	
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/move.js" ></script>
+
+<style>
+#box {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: red;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+}	
+	
+</style>
+
+<script>
+
+onload = function() {
+	var oBox = document.getElementById("box");
+	
+	startMove(oBox, "left", 600);
+
+
+	// div中没有写 style，是不能通过 oBox.style.left 获取 样式的
+//	console.log(oBox.style.left);
+//
+//	// 但可以设置
+//	oBox.style.left = "200px";
+//	
+//	console.log("onload");
+	
+	
+//	startMove(oBox, "left", 600);
+
+//	console.log(  getStyle(oBox, "left") );
+}
+
+</script>
+
+	</head>
+	<body>
+		
+		<div id="box"></div>
+		
+	</body>
+</html>

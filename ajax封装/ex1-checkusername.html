@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+<script>
+
+// 用户名输入完成之后，检查用户名是否已经注册。
+
+//服务器地址：http://127.0.0.1:8080/ajax/checkname
+
+// 使用 GET 方式，向服务器提交了一个参数， regname 值是 zhangsan
+//  按照服务器的要求传入，服务器就可以得到 这个数据
+// http://127.0.0.1:8080/ajax/checkname?regname=zhangsan
+// http://127.0.0.1:8080/ajax/checkname?regname=abc
+
+// regname 是服务器规定好的
+
+
+// 【练习】
+//    1、实现在 用户名输入框 光标失去焦点时，验证此用户名是否已经注册
+//    2、将验证结果，显示在 span 标签中
+
+// 【扩展】
+//    看看你可以找出多少个已经注册的用户名？
+
+//  zhangsan, lisi, wangwu, zhaoliu
+
+// 数据字典（网上搜到）
+var arr = ["zhangsan", "abc", "lisi", "wangwu", "zhaoliu", "123", "u123"];
+
+for  (var i = 0; i < arr.length; i++ ) {
+	
+	// 调用
+	check(arr[i]);
+	
+}
+
+
+// 定义一个函数 check, 检测 username 是否已经注册，如果已经注册，打印输出 username
+function check(username) {
+	var req = new XMLHttpRequest();
+		
+	var url = "http://127.0.0.1:8080/ajax/checkname?regname="+username+"";
+	req.open("GET", url, true);
+	
+	req.send();
+	
+	req.onreadystatechange = function() {
+		if (req.readyState == 4 && req.status == 200) {
+			
+			var str = req.responseText;
+			
+			if (str == "yes") {
+				console.log(username);
+			}
+		}
+	}
+}
+
+onload = function() {
+	var oInput = document.getElementById("username");
+	var oSpan = document.getElementsByTagName("span")[0];
+	
+	oInput.onblur = function() {
+		
+		var req = new XMLHttpRequest();
+		
+		var url = "http://127.0.0.1:8080/ajax/checkname?regname="+oInput.value+"";
+		req.open("GET", url, true);
+		
+		req.send();
+		
+		req.onreadystatechange = function() {
+			if (req.readyState == 4 && req.status == 200) {
+				
+//				console.log(req.responseText);
+				var str = req.responseText;
+				
+				if (str == "yes") {
+					oSpan.innerHTML = "已经注册！";
+				} else {
+					oSpan.innerHTML = "未注册！";
+				}
+			}
+		}
+	}
+
+}
+
+</script>
+		
+	</head>
+	<body>
+		
+		<form>
+			用户名： <input id="username" type="text" /> 
+					<span> 可以注册 </span>
+			<br>
+			密码： <input type="password" />
+		</form>
+
+	
+	</body>
+</html>

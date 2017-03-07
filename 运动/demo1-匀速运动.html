@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+		<input type="button" value="往右运动600px" />
+
+		<div id="box" style="width: 100px; height: 100px; background: red; position: absolute; left: 100px; top: 100px;"></div>
+
+		<input type="button" value="往右运动300px" />
+
+		<div id="box2" style="width: 100px; height: 100px; background: red; position: absolute; left: 100px; top: 300px;"></div>
+
+<script>
+
+var oBox = document.getElementById("box");
+var oBtn = document.getElementsByTagName("input")[0];
+
+oBtn.onclick = function() {
+	
+	// 1. 创建定时器
+	var timer = setInterval(function() {
+		// 初始值
+		var current = oBox.offsetLeft;
+		
+		if (current >= 600) {
+			// 已经到达目标位置
+			clearInterval(timer);
+			return ; // 终止函数
+		}
+		
+		// 改变位置 left
+		oBox.style.left = current + 10 + "px";
+		
+	}, 30);
+	
+}
+
+var oBtn2 = document.getElementsByTagName("input")[1];
+var oBox2 = document.getElementById("box2");
+
+oBtn2.onclick = function() {
+	
+	var timer = setInterval(function() {
+	
+		// 1、获取当前值
+		var current = oBox2.offsetLeft;
+		
+		if (current >= 300) {
+			clearInterval(timer);
+		}
+		
+		// 更新位置
+		oBox2.style.left = current + 10 + "px";
+		
+	}, 30);
+	
+	
+}
+
+	
+</script>
+
+	</body>
+</html>

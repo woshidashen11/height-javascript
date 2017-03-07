@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<ul>
+			<!--<li>
+				<h4>名字</h4>
+				<p>内容</p>
+			</li>-->
+		</ul>
+		
+		<button id="btn1">请求下一条数据</button>
+		
+		<script>
+
+
+
+var oUl = document.getElementsByTagName("ul")[0];
+var oBtn = document.getElementById("btn1");
+
+
+var i = 0;
+
+oBtn.onclick = function() {
+	
+
+	var req = new XMLHttpRequest();
+	
+	req.open("GET", "http://127.0.0.1:8080/json/football.json", true);
+	
+	req.send();
+	
+	req.onreadystatechange = function() {
+		if (req.readyState == 4 && req.status == 200) {
+			var str = req.responseText;
+			
+			console.log(str);
+			
+			var arr = JSON.parse(str);
+			
+			if (i >= arr.length) {
+				alert("加载完毕！");
+				return; 
+			}
+			
+			
+			var oLi = document.createElement("li");
+				
+			var oH4 = document.createElement("h4");
+			var oP = document.createElement("p");
+						
+			
+//			var i = 0; // 下标
+	
+			
+			oH4.innerHTML = arr[i].name;
+			oP.innerHTML = arr[i].content;
+			
+			oLi.appendChild(oH4);
+			oLi.appendChild(oP);
+			
+			oUl.appendChild(oLi);
+			
+			i++; // 指向下一条
+			
+			
+	//		for (var i = 0; i < arr.length; i++) {
+	////			<li>
+	////				<h4>名字</h4>
+	////				<p>内容</p>
+	////			</li>
+	//
+	//			var oLi = document.createElement("li");
+	//			
+	//			
+	//			var oH4 = document.createElement("h4");
+	//			var oP = document.createElement("p");
+	//						
+	//			oH4.innerHTML = arr[i].name;
+	//			oP.innerHTML = arr[i].content;
+	//			
+	//			oLi.appendChild(oH4);
+	//			oLi.appendChild(oP);
+	//			
+	//			oUl.appendChild(oLi);
+	//		}
+		}
+	}
+
+}
+			
+		</script>
+		
+	</body>
+</html>

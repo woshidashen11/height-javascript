@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	
+<!--  绝对路径:  路径以 / 开始， 代表服务器的根目录   -->
+<!--  相对路径:  路径没有 / 开始 -->
+<script type="text/javascript" src="js/common.js" ></script>
+
+<script>
+
+//http://127.0.0.1:8080/json/football.json
+
+// 【扩展】
+//   1、支持 请求类型(GET、POST) 的变化
+//   2、支持 请求地址 的变化
+
+// 【练习】
+// 将 ajax请求代码 封装成一个函数
+// 函数名：ajax 
+// 参数：
+//    一个对象
+//      	method	   请求的方式 
+//      	url      请求的地址
+//      	data     请求的数据  {regname: "zhangsan", psw: "123"}
+//      	fn        回调函数（用于将数据传递给调用者）
+// 返回值：
+
+// 【扩展】
+//    1、支持同步还是异步
+//    2、 支持ajax出错的情况
+//    3、 考虑 IE6 的情况
+
+
+function ajax(obj) {
+	
+	var req = new XMLHttpRequest();
+	
+	if (obj.method == "GET") {
+		obj.url += "?";    // 参数的第一个符号 ?
+		obj.url += convert(obj.data); // 拼接查询字符串 
+	}
+	
+	req.open(obj.method, obj.url, true);
+	
+	if (obj.method == "POST") {
+		// 设置协议头
+		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		
+		// 将对象转换成查询字符串
+		var str = convert(obj.data);
+		// 向服务器发送数据
+		req.send(str);
+		
+	} else {
+		req.send();
+	}
+	
+	req.onreadystatechange = function() {
+		if (req.readyState == 4 && req.status == 200) {
+			obj.fn(req.responseText);
+		}
+	}
+}
+
+
+</script>		
+		
+	</head>
+	<body>
+		
+		<button>请求足球的数据</button>
+		<button>请求新闻的数据</button>
+		
+		
+		<form>
+			用户名： <input id="username" type="text" /> 
+					<span> 可以注册 </span>
+			<br>
+			密码： <input type="password" />
+		</form>
+
+	</body>
+	
+<script>
+
+var allBtn = document.getElementsByTagName("button");
+
+
+allBtn[0].onclick = function() {
+	// 足球的数据
+	ajax({
+		method: "GET",
+		url: "http://127.0.0.1:8080/json/football.json",
+		fn: function(str) {
+			alert(str);
+		}
+	});
+	
+	
+}
+
+allBtn[1].onclick = function() {
+	// 新闻的数据
+	
+	ajax({
+		method: "POST",
+		url: "http://127.0.0.1:8080/json/news.json",
+		fn: function(str) {
+			alert(str);
+		}
+	});
+	
+}
+
+
+var oInput = document.getElementById("username");
+
+oInput.onblur = function() {
+	// 验证用户名是否已经注册
+	//  需求有变化，需要传入 用户名
+	
+	ajax({
+		method: "GET",
+		url: "http://127.0.0.1:8080/ajax/checkname",
+		data: {regname: oInput.value},  // oInput.value 输入框的值
+		fn: function(str) {
+			alert(str);
+		}
+	});
+	
+	// 数据 ==>   {regname:      "zhangsan"   }
+	
+}
+
+</script>	
+</html>

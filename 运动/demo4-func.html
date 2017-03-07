@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+//var a = 1;
+//
+//alert(window.a);
+//
+//
+//function startMove() {
+//	
+//	console.log(timer);
+//
+//	// 因为 timer 是一个局部变量，函数调用结束后，自动销毁
+//	var timer = 1;
+//}
+//
+//
+//startMove();
+//startMove();
+
+
+
+function startMove() {
+	
+	console.log(window.timer);
+
+	// 相当于在 window 对象中新增了一个属性 timer，值是1
+	window.timer = 1;
+}
+
+
+startMove();  // undefined
+startMove();  // 1
+
+	
+</script>		
+		
+	</head>
+	<body>
+	</body>
+</html>

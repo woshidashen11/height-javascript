@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+		<input type="button" value="往左运动到100px" />
+
+		<div id="box" style="width: 100px; height: 100px; background: red; position: absolute; left: 600px; top: 100px;"></div>
+
+		<input type="button" value="往右运动到300px" />
+
+		<div id="box2" style="width: 100px; height: 100px; background: red; position: absolute; left: 100px; top: 300px;"></div>
+
+<script>
+
+// 【练习】
+// startMove: 将一个物体移动到目标位置
+// 参数：
+//     oBox         物体(节点对象)
+//     iTarget      目标位置
+
+// 【扩展】
+//    1、 不能刚好到目标的情况
+//    2、 支持 上下移动
+
+
+function startMove(oBox, iTarget) {
+	
+	clearInterval(oBox.timer);
+
+	oBox.timer = setInterval(function() {
+
+		// 1、获取当前位置
+		var current = oBox.offsetLeft;
+		
+		// 2、速度
+		var speed = (iTarget > current) ? 7 : -7;
+		
+		console.log(current, iTarget, speed);
+		
+		
+		// 3、判断
+		var deta = Math.abs(iTarget - current);
+//		if (current == iTarget) {
+		if (deta < 10) { // 可以判断是否到达目标位置
+			oBox.style.left = iTarget + "px"; // 设置到目标位置
+			
+			console.log(oBox.style.left);
+			clearInterval(oBox.timer); // 停止
+			return ;
+		}
+		
+		// 4、更新位置
+		oBox.style.left = current + speed +"px"; 
+		
+	}, 30);
+	
+	
+}
+
+
+
+
+var oBox = document.getElementById("box");
+var oBtn = document.getElementsByTagName("input")[0];
+
+// 第一个按钮
+oBtn.onclick = function() {
+	// 将物体 oBox 移动到 left 为 100px 的位置
+	startMove(oBox, 100);
+}
+
+var oBtn2 = document.getElementsByTagName("input")[1];
+var oBox2 = document.getElementById("box2");
+
+// 第二个按钮
+oBtn2.onclick = function() {
+	// 将物体 oBox 移动到 left 为 300px 的位置
+	startMove(oBox2, 300);
+}
+
+	
+</script>
+
+	</body>
+</html>

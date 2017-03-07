@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+		<input type="button" value="往左运动到100px" />
+
+		<div id="box" style="width: 100px; height: 100px; background: red; position: absolute; left: 600px; top: 100px;"></div>
+
+		<input type="button" value="往上运动到300px" />
+
+		<div id="box2" style="width: 100px; height: 100px; background: red; position: absolute; left: 100px; top: 300px;"></div>
+
+
+		<input type="button" value="改变宽度值300px" />
+
+		<div id="box3" style="width: 100px; height: 100px; background: red; position: absolute; left: 300px; top: 300px;"></div>
+
+<script>
+
+// 【练习】
+// startMove: 将一个物体移动到目标位置
+// 参数：
+//     oBox         物体(节点对象)
+//     attr         修改物体的属性(例如： left, top)
+//     iTarget      目标位置
+
+// 【扩展】
+//    1、 不能刚好到目标的情况
+//    2、 支持 上下移动
+
+
+//[练习] 用简便的代码 修改运动 函数
+
+function startMove(oBox, attr, iTarget) {
+	
+	clearInterval(oBox.timer);
+
+	oBox.timer = setInterval(function() {
+
+		// 1、获取当前位置（这里有没有更简便的写法， 考虑 width, height）
+		//  oBox.style[attr] 访问节点对象 oBox 的style对象中 attr 属性值
+		var current = parseInt(oBox.style[attr]);
+		
+		// 2、速度
+		var speed = (iTarget > current) ? 10 : -10;
+		
+		// 3、判断
+		if (current == iTarget) {
+			clearInterval(oBox.timer); // 停止
+			return ;
+		}
+		
+		// 4、更新位置
+		oBox.style[attr] = current + speed +"px"; 
+
+	}, 30);
+	
+	
+}
+
+
+
+
+var oBox = document.getElementById("box");
+var oBtn = document.getElementsByTagName("input")[0];
+
+// 第一个按钮
+oBtn.onclick = function() {
+	// 将物体 oBox 移动到 left 为 100px 的位置
+	startMove(oBox, "left", 100);
+}
+
+var oBtn2 = document.getElementsByTagName("input")[1];
+var oBox2 = document.getElementById("box2");
+
+// 第二个按钮
+oBtn2.onclick = function() {
+	// 将物体 oBox 移动到 top 为 100px 的位置
+	startMove(oBox2, "top", 100);
+}
+
+
+
+var oBtn3 = document.getElementsByTagName("input")[2];
+var oBox3 = document.getElementById("box3");
+
+// 第三个按钮
+oBtn3.onclick = function() {
+	// 将物体 oBox width 为 300px 的位置
+	startMove(oBox3, "width", 300);
+}
+	
+</script>
+
+	</body>
+</html>

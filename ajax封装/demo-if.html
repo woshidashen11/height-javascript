@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+<script>
+
+//var a = undefined;
+//
+//// a: 0, undefined, null, false ==> false
+//if (a) {
+//	alert();
+//}
+
+var obj = {
+	error: function() {
+		alert("error!");
+	}
+};
+
+
+// obj.error 因为 obj 不存在 error，所以这个值是 undefined
+//if (obj.error) {
+//	obj.error();
+//}
+
+// 如果 obj.error 存在，才会执行 obj.error();
+// 如果 obj.error 不存在，条件为假，所以不会执行 obj.error();
+//obj.error && obj.error();
+
+
+// 如果 e 存在，就使用 e
+// 如果 e 不存在，就使用 window.event
+//e || window.event
+
+
+
+	
+</script>
+		
+	</head>
+	<body>
+	</body>
+</html>

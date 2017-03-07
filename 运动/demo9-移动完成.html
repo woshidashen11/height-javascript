@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/move.js" ></script>
+
+<style>
+#box {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: red;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+}	
+	
+</style>
+
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>	
+
+<script>
+
+onload = function() {
+	var oBox = document.getElementById("box");
+
+	startMove(oBox, "left", 600, function() {
+			
+		startMove(oBox, "left", 100);
+	
+	});
+	
+}
+
+</script>
+	
+</html>

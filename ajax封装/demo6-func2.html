@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+		
+		
+//function add(a, b) {
+////	console.log(a + b);
+//	return (a + b);
+//}
+//			
+////// add(3, 5) 调用函数： 它的值 是 return 后面表达式的值,所以它的值是 undefined
+//////  undefined * 100  ==> NaN
+//console.log(  add(3, 5) * 100 );
+
+
+
+
+//function aa(n) {
+//	console.log(n);
+//}
+//
+//// 由调用者 传递 数据 给 函数 ==> 正向数据调用
+//aa(5);
+//
+//// fn 是一个函数，由调用者传入进来
+//function aa(fn) {
+//	fn(100);
+//}
+//
+//// 由被调用者 传递 数据 给 调用者 ==> 反向数据调用
+////  通过传递一个函数给 aa 实现的
+////  (1) fn = function(n){
+////			console.log(n);
+////		}
+////  (2) fn(100);    100 ==> n
+////                  console.log(n);  // 100
+//
+//aa(function (n) {
+//	console.log(n);
+//});
+//
+//
+//function fn(n){
+//	console.log(n);
+//}
+
+
+
+
+
+
+//function aa() {
+//	
+//}
+//
+//// 整体的函数
+////console.log(aa);     
+//// undefined
+////console.log(aa());
+//
+//// aa() 调用函数，那么整体的值 是 函数aa中return后面表达式的值， undefined
+//// aa   就是函数，将函数 aa赋值给 bb，相当于 bb就是aa这个函数
+//var bb = aa;
+//
+//// bb() 因为 bb 等于 aa，所以相当于 aa(), 它的值是return后面的值，undefine
+//// undefined
+//console.log(  bb()  );
+
+
+// 将匿名函数赋值给 aa
+var aa = function() {
+	
+};
+
+// aa() 就是调用这个函数
+console.log(  aa()  ); // undefined
+console.log(  aa  ); // function 
+
+
+var bb = aa;    // 将函数aa赋值给 bb
+var bb = aa();  // bb 的值是undefined
+
+
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

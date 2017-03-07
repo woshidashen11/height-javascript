@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+//http://127.0.0.1:8080/json/football.json
+
+// 【练习】
+// 将 ajax请求 足球数据的代码 封装成一个函数
+// 函数名：ajax 
+// 参数：
+//      fn   回调函数（用于将数据传递给调用者）
+// 返回值：
+
+function ajax(fn) {
+	var req = new XMLHttpRequest();
+	req.open("GET", "http://127.0.0.1:8080/json/football.json", true);
+	req.send();
+	req.onreadystatechange = function() {
+		if (req.readyState == 4 && req.status == 200) {
+			fn(req.responseText);
+		}
+	}
+}
+
+ajax(function(str) {
+	alert(str);
+});
+
+
+
+
+// 【扩展】
+//   1、支持 请求类型(GET、POST) 的变化
+//   2、支持 请求地址 的变化
+
+
+</script>		
+		
+	</head>
+	<body>
+		
+		<button>点击</button>
+	</body>
+</html>

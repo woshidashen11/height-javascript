@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+<style>
+#box {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: red;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+}	
+	
+</style>
+
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>	
+
+<script type="text/javascript" src="js/move.js" ></script>
+<script>
+//练习:
+// 将红色div,先动画移动到left为400的位置,  然后再动画移动回来;
+
+var oBox = document.getElementById("box");
+
+//startMove(oBox, "left", 400, function() {
+//	startMove(oBox, "left", 100);
+//})
+
+
+
+
+
+//
+//【扩展】
+//
+//移动到 右边 400px
+//移动到 下边 400px
+//移动到 左边 100px;
+//移动到 上边 100px;
+
+//startMove(oBox, "left", 400, function() {
+//	startMove(oBox, "top", 400, function() {
+//		startMove(oBox, "left", 100, function() {
+//			startMove(oBox, "top", 100);
+//		});
+//	});
+//});
+
+
+//
+//(2) 循环移动
+
+//setInterval(function() {
+//
+//	startMove(oBox, "left", 1200, function() {
+//		startMove(oBox, "top", 400, function() {
+//			startMove(oBox, "left", 100, function() {
+//				startMove(oBox, "top", 100);
+//			});
+//		});
+//	});
+//	
+//}, 4000);
+
+
+function move() {
+
+	startMove(oBox, "left", 400, function() {
+		startMove(oBox, "top", 400, function() {
+			startMove(oBox, "left", 100, function() {
+				startMove(oBox, "top", 100, function() {
+					move();
+				});
+			});
+		});
+	});
+}
+
+move();
+
+
+
+</script>
+	
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+		<input type="button" value="往右运动600px" />
+
+		<div id="box" style="width: 100px; height: 100px; background: red; position: absolute; left: 100px; top: 100px;"></div>
+
+		<input type="button" value="往右运动300px" />
+
+		<div id="box2" style="width: 100px; height: 100px; background: red; position: absolute; left: 100px; top: 300px;"></div>
+
+<script>
+
+// startMove: 将一个物体移动到目标位置
+// 参数：
+//     oBox         物体(节点对象)
+//     iTarget      目标位置
+
+// 定义全局变量
+//  存在一个问题： 第二个运动 会将 第一个运动 的定时器给清除掉
+//  解决方法，每一个物体(节点对象)需要有自己的定时器
+//                 节点对象.timer
+//var timer = null;
+
+//var obj = {};
+//
+//obj.timer = 1; // 相当于在 obj对象中新增了一个属性，timer，值是 1
+
+function startMove(oBox, iTarget) {
+	// 因为 调用 startMove 太多次，会创建多个 定时器，使得物体越跑越快
+	// [练习] 按照你自己的想法来解决这个问题
+	
+	// 清除 timer 这个定时器，相当于清除上一个定时器
+//	clearInterval(null); 在这里传入null，相当于什么事情也不做  
+//	clearInterval(timer);
+	clearInterval(oBox.timer);  // 清除物体自己的定时器
+	
+	// 1. 创建定时器
+	oBox.timer = setInterval(function() {
+		// 初始值
+		var current = oBox.offsetLeft;
+		
+		if (current >= iTarget) {
+			// 已经到达目标位置
+			clearInterval(oBox.timer);
+			return ; // 终止函数
+		}
+		
+		// 改变位置 left
+		oBox.style.left = current + 10 + "px";
+		
+	}, 50);
+}
+
+var oBox = document.getElementById("box");
+var oBtn = document.getElementsByTagName("input")[0];
+
+oBtn.onclick = function() {
+	startMove(oBox, 600);
+}
+
+var oBtn2 = document.getElementsByTagName("input")[1];
+var oBox2 = document.getElementById("box2");
+
+oBtn2.onclick = function() {
+	startMove(oBox2, 300);
+}
+
+	
+</script>
+
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+
+var req = new XMLHttpRequest();
+
+req.open("GET", "http://127.0.0.1:8080/ajax/checkname", true);
+
+// setRequestHeader 设置请求头
+//   是对象中的方法/函数/行为
+//req.setRequestHeader("password", "123456");	
+
+req.setRequestHeader("token", "xxxx-123-4123123-123123123");
+
+req.send();
+
+
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

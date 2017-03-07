@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+
+//var str = "1+1";
+//
+//// eval(str) 将字符串 str 按照 JS 的语法，重新执行。 
+//// 返回的结果，就是执行 str 后的结果
+//document.write( eval(str) );  // 2
+
+
+
+// JSON 是一个字符串
+
+// (1) JSON 表示形式： 数组
+//      [1, 2, 3]
+
+//// 定义了JSON字符串，其中包含3个元素，分别是 10, 2, 3
+//var json = "[109999, 2, 3]";
+//
+
+//([109999, 2, 3])
+
+//// 按照 JS的语法执行
+//var arr = eval("(" + json + ")");
+//
+//document.write( arr[0] );
+
+
+//  (2) 对象 ： 【注意】属性名必须加双引号
+//  {"name": "张三", "age": 18}
+
+//// 字符串中间存在 ""，两端的符号需要改成 ''
+//var json = '{"name":"张三","age":18}';
+//
+//// JSON字符串转换成对象
+//var obj = eval("("+json+")");
+//
+//// JSON字符串 转换成 对象
+////json = "(" + json + ")";
+////var obj = eval(json);
+//
+//document.write(obj.name);
+
+
+// 如何取出json字符串定义的 name 属性值呢？
+
+// 在对象两端加上小括号，作为一个整体，
+// 让计算机清楚地知道这里是一个对象，而不是函数、循环等其他的
+//({"name":"张三","age":18})
+
+
+// 将字符串执行，假如 str 包含了循环10000次删除操作
+//eval(str)
+//eval 存在安全隐患
+
+
+
+//var json = '{"name":"张三","age":18}';
+//
+//// JSON.parse    专门用于将 字符串 转换成 js 的对象
+////   只能执行JSON的语句，其他的(例如：循环、删除、创建ajax)： 安全性高
+//var obj = JSON.parse(json);
+//
+//document.write(obj.age);
+
+// 低版本不能用： IE6、IE7 以及以下就不能用
+
+//var json = "[1, 2, 3]";
+//
+//var arr = JSON.parse(json);
+//
+//console.log(arr);
+
+
+
+// （3） 对象和数组混合在一起的情况
+//var json = '[{"age": 18}, {"age": 19}]';
+//
+//var arr = JSON.parse(json);
+//
+//// 遍历数组
+//for (var i = 0; i < arr.length; i++) {
+////	arr[i]  是一个对象
+//	console.log( arr[i].age );
+//}
+
+
+//// 对象中包含数组
+//var json = '{"family": ["爸爸", "妈妈", "妹妹"]}';
+//
+//var obj = JSON.parse(json);
+//
+////obj.family 是一个数组
+//document.write( obj.family[0] );
+
+
+var obj = {"name": "张三", "age": 18};
+
+// 将对象转换成字符串
+var str = JSON.stringify( obj );
+
+console.log(str);
+
+
+// 购物车
+//["苹果", "梨子", "香蕉"]
+
+//存入cookie时： 对象 ===> JSON字符串
+//读取cookie时： JSON字符串 ==> 对象
+
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

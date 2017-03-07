@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	
+<!--  绝对路径:  路径以 / 开始， 代表服务器的根目录   -->
+<!--  相对路径:  路径没有 / 开始 -->
+<script type="text/javascript" src="js/common.js" ></script>
+
+<script>
+
+//http://127.0.0.1:8080/json/football.json
+
+// 【扩展】
+//   1、支持 请求类型(GET、POST) 的变化
+//   2、支持 请求地址 的变化
+
+// 【练习】
+// 将 ajax请求代码 封装成一个函数
+// 函数名：ajax 
+// 参数：
+//    一个对象
+//      	method	   请求的方式 
+//      	url      请求的地址
+//      	data     请求的数据  {regname: "zhangsan", psw: "123"}
+//          async    true 就代表异步，false代表
+//      	success   成功的回调函数（用于将数据传递给调用者）
+//          error     出错的回调函数
+// 返回值：
+
+// 【扩展】
+//    1、支持同步还是异步
+//    2、 支持ajax出错的情况
+//    3、 考虑 IE6 的情况
+
+
+function ajax(obj) {
+	
+	var req = null;
+	
+	if (window.XMLHttpRequest) {
+		// 说明是非 IE6
+		req = new XMLHttpRequest();
+	} else {
+		// IE6中不存在 XMLHttpRequest 对象
+		// IE6中创建 ajax对象的方法
+		req = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	if (obj.method == "GET") {
+		obj.url += "?";    // 参数的第一个符号 ?
+		obj.url += convert(obj.data); // 拼接查询字符串 
+	}
+	
+	// 如果调用时没有传入 obj.async，那么默认的设置为 异步方式
+	if (obj.async == undefined) {
+		obj.async = true;
+	}
+	
+	req.open(obj.method, obj.url, obj.async);
+	
+	if (obj.method == "POST") {
+		// 设置协议头
+		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		
+		// 将对象转换成查询字符串
+		var str = convert(obj.data);
+		// 向服务器发送数据
+		req.send(str);
+		
+	} else {
+		req.send();
+	}
+	
+	
+	if (obj.async == true) {
+		// 异步
+		req.onreadystatechange = function() {
+			if (req.readyState == 4) {
+				
+				if (req.status == 200) {
+					obj.success && obj.success(req.responseText);
+				} else {
+					// 出错了
+					// error没写的情况是：  obj.error： undefined 
+//					if (obj.error) {
+//	 					obj.error(req.status);
+//	 				}
+
+					obj.error && obj.error(req.status);
+				}
+			}
+		}
+		
+	} else {
+		// 同步
+		if (req.readyState == 4 && req.status == 200) {
+			obj.success && obj.success(req.responseText);
+		}
+	}
+}
+
+
+//onload = function ajax(obj){
+//	
+//	var req = null;
+//	if(window.XMLHttpRequest){
+//		req = new XMLHttpRequest();
+//	} else {
+//		req = new ActiveXObjct("miscosoft.XMLHTTP");
+//	};
+//	
+//	if(obj.method == "GET"){
+//		obj.url += "?";
+//		obj.url +=convert(obj.data)
+//	};
+//	
+//	 if(obj.tf ==undefined){
+//	 	var obj.tf ==true ;
+//	 }
+//	req.open(obj.method,obj.url,obj.tf);
+//	
+//	if(obj.method == "POST"){
+//		req.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+//		var str = convert(obj.data);
+//		req.send(str)
+//	}else {
+//		req.send()
+//	};
+//	
+//	if(obj.tf == true){
+//		req.onreadystatechange = function(){
+//			if(req.readyState == 4){
+//				if(req.status == 200){
+//					if(req.success){
+//						req.success(req.responseText)
+//					}
+//				}else {
+//					if(req.success){
+//						req.success(req.readyState)
+//					}
+//				}
+//			}
+//		}
+//	} else {
+//		if(req.success){
+//						req.success(req.responseText)
+//					}
+//	}
+//}
+
+</script>		
+		
+	</head>
+	<body>
+		
+		<button>请求足球的数据</button>
+		<button>请求新闻的数据</button>
+		
+		
+		<form>
+			用户名： <input id="username" type="text" /> 
+					<span> 可以注册 </span>
+			<br>
+			密码： <input type="password" />
+		</form>
+
+	</body>
+	
+
+</script>	
+</html>
