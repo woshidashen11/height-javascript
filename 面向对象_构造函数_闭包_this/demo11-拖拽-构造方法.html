@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box" style="background: red; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+	</body>
+	
+
+<script>
+
+// 面向对象的思路
+//  拖拽
+//  1、找对象
+//                  属性                                                          方法/行为
+//     拖拽的Div    颜色、宽高、位置、背景(节点)    移动、停止、开始
+
+//  构造方法
+
+
+function DragObj() {
+	
+	// 节点属性
+	this.ele = document.getElementById("box");
+
+	// 方法：
+	//   1、移动
+	this.move = function(clientX, clientY) {
+		var x = clientX - this.disX;
+		var y = clientY - this.disY;
+		
+		this.ele.style.left = x + "px";
+		this.ele.style.top = y + "px";
+	}
+	
+	//   2、开始
+	this.start = function() {
+		
+		var self = this; // 保存当前拖拽对象
+		
+		this.ele.onmousedown = function(e) {
+			// 将两个位置距离保存到  dragObj 里面
+			self.disX = e.offsetX;
+			self.disY = e.offsetY;
+			
+			document.onmousemove = function(e) {
+				// this ==> document
+				self.move(e.clientX, e.clientY);
+			}
+			
+			document.onmouseup = function() {
+				self.stop();
+			}
+		}
+	}
+
+	// 3、停止
+	this.stop = function() {
+		document.onmousemove = null;
+		document.onmouseup = null;
+	}
+}
+
+
+
+
+// 开始拖拽
+//var dragObj = new DragObj()
+//
+//dragObj.start();
+
+
+new DragObj().start();
+
+
+</script>
+
+	
+</html>

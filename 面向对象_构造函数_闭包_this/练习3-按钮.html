@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button> 按钮1 </button>
+		<button> 按钮2 </button>
+		<button> 按钮3 </button>
+		<button> 按钮4 </button>
+		<button> 按钮5 </button>
+	</body>
+<script>
+
+
+// 【练习】 使用闭包的方式实现 点击按钮 弹出对应的下标
+
+function createClick(index) {
+	return (function() {
+		alert(index); // 内部的函数，引用了外部的变量
+	});
+}
+
+
+var allBtn = document.getElementsByTagName("button");
+for (var i = 0; i < allBtn.length; i++) {
+	allBtn[i].onclick = createClick(i);
+}	
+	
+
+
+</script>	
+	
+</html>

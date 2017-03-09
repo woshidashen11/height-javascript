@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+//练习：使用原型的方式(类)
+//Cat: 猫
+//方法：eat (吃); miaow （叫）
+
+
+function Cat() {
+		
+}
+
+
+Cat.prototype.eat = function() {
+	console.log("猫吃鱼");
+}
+
+Cat.prototype.miaow = function() {
+	console.log("喵");
+}
+
+
+//
+//new Cat().eat();
+//new Cat().miaow();
+
+
+var cat1 = new Cat();
+var cat2 = new Cat();
+
+// 因为两个对象都是共用同一个函数，所以结果是 true
+// 总之所有对象都是共用这一个
+console.log(cat1.eat == cat2.eat); // true
+
+
+</script>		
+	</head>
+	<body>
+	</body>
+</html>

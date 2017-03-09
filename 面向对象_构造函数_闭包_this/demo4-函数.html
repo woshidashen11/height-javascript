@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+
+// 工厂模式：函数
+function createPerson() {
+	var person = {};
+	
+	person.name = "张三";
+	
+	return person;
+}
+
+// 调用函数: 整体的值就是 return 后面的表达式的值
+//console.log(   createPerson()  ); // undefined
+			
+var stu1 = createPerson(); // 创建对象
+var stu2 = createPerson();
+	
+console.log(stu1.name); // 张三
+console.log(stu2.name); // 张三
+
+
+console.log(typeof stu1); // object
+console.log(typeof stu2); // object
+
+
+		</script>
+		
+	</head>
+	<body>
+	</body>
+</html>

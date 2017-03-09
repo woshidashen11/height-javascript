@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul, li {
+				list-style: none;
+			}
+			
+			#box {
+				width: 800px;
+				height: 300px;
+				position: relative;
+				overflow: hidden;
+				margin: 10px auto;
+			}
+			
+			#list {
+				width: 600px;
+				position:absolute;
+				left: 0px;
+				top: 0;
+			}
+			
+			#list li {
+				width: 600px;
+				height: 300px;
+			}
+			#list img {
+				width: 600px;
+				height: 300px;
+			}
+			
+			#list2 {
+				width: 200px;
+				height: 300px;
+				position: absolute;
+				left: 600px;
+				top: 0;
+			}
+			
+			#list2 li {
+				width: 200px;
+				height: 100px;
+				background: yellow;
+				line-height: 100px;
+				text-align: center;
+				font-size: 20px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li><img src="img/1.jpg" /></li>
+				<li><img src="img/2.jpg" /></li>
+				<li><img src="img/3.jpg" /></li>
+			</ul>
+			<ul id="list2">
+				<li style="background: red;">1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		
+		<a href="#" id="prePage">上一页</a>
+		<a href="#" id="nextPage">下一页</a> 
+		
+		
+<script type="text/javascript" src="js/move.js" ></script>
+
+<script>
+
+var oBtnPrevPage = document.getElementById("prePage");
+oBtnPrevPage.onclick = function() {
+	
+	if (isLock == true) {
+		return ;
+	}
+	
+	if (i == 0) {
+//		i = 3; // 第一张
+//		i = 3 - 1;  // 第一张 上面那张
+		i = 3 - 1 - 1;  // 因为move中存在i++，所以要移动到 3 - 1，还得减去1
+		oUl.style.top = "-900px"; // 切换到复制的第一张
+	} else {
+		i = i - 2;
+	}
+
+	move();
+}
+
+
+var oBtnNextPage = document.getElementById("nextPage");
+oBtnNextPage.onclick = function() {
+	
+	
+	if (isLock == false) {
+		// 调用 move函数： 使用缓冲动画切换到下一张
+		move();
+	}
+}
+
+
+var oUl = document.getElementById("list");
+
+oUl.innerHTML += oUl.innerHTML; // 复制一份
+
+// 轮播图对应按钮的 ul
+var oUl2 = document.getElementById("list2");
+var allBtn = oUl2.getElementsByTagName("li");
+
+for (var j  = 0; j < allBtn.length; j++) {
+	allBtn[j].xxx = j; // 保存下标
+	allBtn[j].onclick = function() {
+		
+		// 因为move存在 i++, 所以要切换到 this.xxx，需要减1
+		i = this.xxx - 1;
+		
+		move();
+	}
+}
+
+
+
+var t = 1000; // 定时更新的事件
+var i = 0; // 当前图片的下标
+
+var timer = setInterval(move, t);
+
+
+var isLock = false; // 刚开始没有锁住
+
+// 使用缓冲动画切换到下一张图片
+function move() {
+	
+	isLock = true; // 锁住
+	
+	// 关闭定时器
+	clearInterval(timer);
+	
+	i++; 
+	
+	// 先【所有】的按钮的颜色设置黄色
+	for (var j = 0; j < allBtn.length; j++) {
+		allBtn[j].style.background = "yellow";
+	}
+	
+	console.log(i);
+	
+	if (i >= 3) {
+		// 因为轮播图复制了一份图片，所以下标为3的时候，应该显示第0张
+		allBtn[0].style.background = "red";
+	} else {
+		// 当前轮播图的下标是 i === 按钮的下标
+		allBtn[i].style.background = "red";
+	}
+	
+	var iTop = -1 * i * 300;
+	
+	startMove(oUl, "top", iTop, next);
+}
+
+// 缓冲动画完成函数
+function next() {
+	if (i >= 3) {
+		i = 0;
+		oUl.style.top = "0px"; 
+	}
+	
+	// 重新开启定时器
+	timer = setInterval(move, t);
+	
+	
+	isLock = false; // 打开锁
+}
+	
+</script>
+	
+	</body>
+</html>

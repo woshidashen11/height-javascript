@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+
+// Cat： 一类对象的统称，类名： 首字母大写
+//function Cat() {
+//	this.fur = "黄色"; //属性
+//	
+//	// 方法
+//	this.eat = function() {
+//		console.log("吃吃吃 鱼鱼鱼");
+//	}
+//	
+//	this.miaow = function() {
+//		console.log("喵喵喵");
+//	}
+//}
+//			
+//var cat = new Cat();
+//console.log(cat.fur);
+//cat.eat();
+
+
+
+function GarfieldCat(fur, glasses) {
+	this.fur = fur;
+	this.glasses = glasses;
+	
+	this.eat = function() {
+		console.log("吃");
+	}
+	
+	this.miaow = function() {
+		console.log("叫");
+	}
+	
+	this.talk = function() {
+		console.log("说");
+	}
+}
+
+// 使用构造方法，创建对象，是可以传递参数
+var cat1 = new GarfieldCat("黄色", "暴龙眼镜");
+var cat2 = new GarfieldCat("红色", "小米眼镜");
+console.log(cat1.glasses); // 暴龙眼镜
+console.log(cat2.glasses); // 小米眼镜
+
+
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

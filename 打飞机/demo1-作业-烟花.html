@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			body, html {
+				width: 100%;
+				height: 100%;
+				background: black;
+				overflow: hidden;
+			}
+			
+			.fire {
+				width: 3px;
+				height: 30px;
+				background: white;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			.spark {
+				width: 3px;
+				height: 3px;
+				background: red;
+				position: absolute;
+			}
+			
+		</style>
+<script type="text/javascript" src="js/day20-move.js" ></script>		
+<script type="text/javascript" src="js/Fire.js" ></script>
+<script type="text/javascript" src="js/FireSpark.js" ></script>
+
+<script>
+//[作业] 构造方法 + 原型
+//使用面向对象的思想(构造函数+原型)实现烟花效果
+//
+//对象： 烟花筒            烟花碎片
+//
+//            属性                                                          方法
+//烟花筒         颜色、大小、位置(节点)        发射， 爆炸，掉下来
+//烟花碎片     颜色、大小、位置(节点)        掉下来(随机抛物运动)
+
+document.onclick = function(e) {
+	// 在点击位置 创建烟花筒，并发射
+	new Fire(e.clientX, e.clientY).send();
+}
+
+</script>		
+	</head>
+	<body>
+	</body>
+</html>

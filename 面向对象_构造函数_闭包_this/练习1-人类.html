@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+// 练习
+//   创建对象
+//                 属性                行为
+//      小红：   姓名、年龄              介绍自己
+//      小明：   姓名、年龄              介绍自己
+
+var xiaohong = {}; // 创建一个对象
+
+xiaohong.name = "小红";  // 新增了一个属性
+xiaohong.age = 18;
+
+xiaohong.show = function() {
+	console.log("我是小红！"); // 将代码封装在一起
+}
+
+
+var xiaoming = {}; // new Object()
+
+xiaoming.name = "小明";
+xiaoming.age = 18;
+
+xiaoming.show = function() {
+	console.log("我是小明！");
+}
+
+//var xiaoming = {
+//	name: "小明",
+//	age: 18,
+//	show: function() {
+//		console.log("我是小明！");
+//	}
+//};
+
+	
+
+xiaohong.show();
+xiaoming.show();
+	
+</script>		
+		
+	</head>
+	<body>
+	</body>
+</html>

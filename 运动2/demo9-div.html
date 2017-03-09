@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<style>
+
+.myDiv {
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	top: 100px;
+	left:100px;
+}	
+	
+</style>
+	</head>
+	<body>
+	</body>
+
+<script>
+
+for (var i = 0; i < 5; i++) {
+	
+	var oDiv = document.createElement("div");
+	
+	oDiv.className = "myDiv";
+	oDiv.style.top = 100 + i*200 + "px";
+	
+	setTimeout(function() {
+		// 因为5秒后， oDiv 只指向最后一个 div，所以只会改变最后一个div的边框
+		oDiv.style.border = "20px solid black";
+	}, 5000);
+	
+	document.body.appendChild(oDiv);
+
+}
+</script>
+	
+</html>

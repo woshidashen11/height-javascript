@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="box1" style="background: red; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+		<div id="box2" style="background: yellow; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+		<div id="box3" style="background: blue; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+
+	</body>
+<script>
+
+
+// 对象
+//  1、随意拖拽的对象  DragObj
+//  2、不能超出左边界和上边界的拖拽的对象  DragObjLimit
+//  3、带文字的的对象  DragObjText
+
+
+function DragObj(boxId) {
+	
+	// 如果这么没有传参数，立刻终止
+	if (boxId == undefined) {
+		return ;
+	}
+	
+	this.ele = document.getElementById(boxId);
+	
+	var self = this;
+	
+	console.log(boxId);
+	console.log(this.ele);
+	
+	this.ele.onmousedown = function(e) {
+		self.disX = e.offsetX; // 保存点击的X偏移值
+		self.disY = e.offsetY; // 保存点击的X偏移值
+		
+		console.log(self);
+		
+		self.start(); //开始拖拽
+	}
+}
+
+// 开始拖拽 start
+DragObj.prototype.start = function() {
+	
+	var self = this;
+	document.onmousemove = function(e) {
+		self.move(e.clientX, e.clientY);
+		
+		e.preventDefault();
+	}
+	
+	document.onmouseup = function() {
+		document.onmousemove = null;
+		document.onmouseup = null; 
+	}
+}
+
+// 移动  move
+DragObj.prototype.move = function(x, y) {
+	x = x - this.disX;
+	y = y - this.disY;
+	
+	this.ele.style.left = x + "px";
+	this.ele.style.top = y + "px";
+}
+
+
+
+// 【练习】
+//    通过继承 DragObj 实现 DragObjLimit
+function DragObjLimit(boxId) {
+	
+	// this  就是 DragObjLimit 构造方法的对象
+	//  通过对象冒充，获取 DragObj 里面的自己的属性
+	DragObj.call(this, boxId);
+}
+
+// 继承原型链 + 自身的属性
+DragObjLimit.prototype = new DragObj();
+
+
+DragObjLimit.prototype.move = function(x, y) {
+	x = x - this.disX;
+	y = y - this.disY;
+	
+	// 左边界
+	if (x < 0) {
+		x = 0;
+	}
+	
+	// 上边界
+	if (y < 0) {
+		y = 0;
+	}
+	
+	this.ele.style.left = x + "px";
+	this.ele.style.top = y + "px";
+}
+
+
+// 【扩展】
+//    通过继承 DragObj 实现 DragObjText
+
+function DragObjText(boxId) {
+	DragObjLimit.call(this, boxId);
+}
+
+DragObjText.prototype = new DragObjLimit();
+
+DragObjText.prototype.move = function(x, y) {
+	
+	// this  DragObjText对象
+	DragObjLimit.prototype.move.call(this, x, y); // 冒充 move 
+//	
+//	this.ele.innerHTML = "left: "+x+", top: "+y+"";
+
+
+	// innerHTML 中可以设置 HTML 代码的
+	this.ele.innerHTML = "<button>按钮</button>";
+}
+
+
+new DragObjLimit("box3");
+new DragObjText("box2");
+
+</script>	
+	
+</html>

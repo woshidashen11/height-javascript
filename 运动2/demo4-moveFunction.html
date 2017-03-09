@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 10px;
+				top: 50px;
+				opacity: 0.5;
+				filter: alpha(opacity=50);
+			}
+		</style>
+		
+		<script src="js/day20-move.js"></script>
+		<script>
+			
+onload = function() {
+	var oBtn = document.getElementsByTagName("input")[0];
+	var oBox = document.getElementById("box");
+
+	oBtn.onclick = function() {
+		
+//		startMove(oBox, "left", 500);
+//		startMove(oBox, "top", 500);
+
+		var obj = {
+			"left": 500,
+			"top": 500, 
+			"width": 500,
+			"opacity": 100
+		}
+		
+		startMove(oBox, obj);
+		
+	}
+
+}
+			
+		</script>
+		
+	</head>
+	<body>
+		<input type="button" value="开始运动" />
+		<div id="box"></div>
+	</body>
+</html>

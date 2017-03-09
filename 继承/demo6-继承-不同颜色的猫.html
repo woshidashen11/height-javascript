@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+//function Cat(fur) {
+//	this.fur = fur;
+//}
+//
+//// 加菲猫
+//function GarfieldCat() {
+//	
+//}
+//
+////                      没有传参，变量就是 undefined
+////                      {fur: undefined}
+//GarfieldCat.prototype = new Cat();
+//
+//var cat = new GarfieldCat();
+//
+//console.log(cat.fur); // undefined
+
+
+
+//var cat1 = new Cat("红色");
+//console.log(cat1.fur);
+//
+//var cat2 = new Cat("黄色");
+//console.log(cat2.fur);
+//	
+	
+	
+
+
+function Cat(fur) {
+	this.fur = fur;
+}
+
+// 加菲猫
+function GarfieldCat(fur) {
+	this.fur = fur;
+}
+
+//                      没有传参，变量就是 undefined
+GarfieldCat.prototype = new Cat();
+
+var cat = new GarfieldCat("红色");
+
+console.log(cat.fur); // 红色
+
+
+</script>		
+		
+	</head>
+	<body>
+	</body>
+</html>

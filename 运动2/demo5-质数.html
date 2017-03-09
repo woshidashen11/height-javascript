@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+<script>
+
+//// 质数（素数） ：只能被1和自身整除的整数
+//
+//var n = 7;
+//
+//// 思路：
+////   在 2..n-1之间，如果有一个数字能整除，那么不是的
+////                 如果没有一个数字能整除，那么就是质数
+//
+////   在 2..n-1之间，如果没有一个数字能整除，那么就是质数
+//
+//
+//
+//
+//
+//var flag = false;
+//
+//for (var i = 2; i <= n-1; i++) {
+//	if (n % i == 0) {
+//		// 说明有一个
+//		flag = true;
+//	} 
+//}
+//
+//if (flag == true) {
+//	// 说明在 2..n-1之间 至少存在一个数字，能被 n 整除
+//	alert("不是质数！");
+//} else {
+//	alert("是质数！");
+//
+//}
+
+
+
+// 【练习】
+//   1、判断273879是否为质数
+
+
+//var n = 273879;
+//
+//var flag = false;
+//for (var i = 2; i <= n-1; i++) {
+//	if (n % i == 0) {
+//		flag = true;
+//	}
+//}
+//
+//if (flag == true) {
+//	console.log("不是质数！");
+//} else {
+//	console.log("是质数！");
+//}
+
+
+//   2、找出 1..100 之间所有的质数
+
+for (var n = 1; n <= 100; n++) {
+
+	var flag = false;  // 每次循环都会将 flag 设置成 false
+	for (var i = 2; i <= n-1; i++) {
+		if (n % i == 0) {
+			flag = true;
+		}
+	}
+	
+	if (flag == false) {
+		console.log(n); // n 是质数
+	}
+
+}
+	
+</script>	
+	
+</html>

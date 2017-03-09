@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		
+<script src="js/GameEngine.js"></script>
+	
+		<script>
+
+// 写游戏 ==> 应用程序   ==>  面向对象  (方便、快捷)
+
+// 第一步： 找对象
+// 打飞机的游戏 (找到的对象)
+//  物理引擎 对象 (管理整个游戏，包括背景、什么时候创建敌机、游戏运行位置)、
+//   自己的飞机、敌机、子弹 、 计分面板
+
+//  第二步： 实现对象
+
+//                   属性                                                                 方法
+// 物理引擎对象       颜色、大小、位置、背景图片(节点对象)    开始游戏、创建敌机   
+
+//创建对象的方式
+// 1、字面量    {}
+// 2、构造方法  function Perons() {}
+// 3、原型         Person.prototype 
+
+// 因为 物理引擎只有一个，所以用 字面量的形式会更好
+
+
+//                   属性                                                  方法
+//自己的飞机          颜色、位置、图片、大小（节点对象）     初始化、 拖拽移动、开火
+
+
+//  自己的飞机 只有一个，所以字面量方便些
+
+var myPlane = {
+	ele: null,
+	
+	// 初始化自己的飞机
+	init: function() {
+		this.ele = document.createElement("div");
+		this.ele.className = "myplane"; // 样式
+		
+		// 将飞机添加到 游戏面板
+		gameEngine.ele.appendChild(this.ele);
+		
+		// 放到中间
+		var centerX = parseInt((gameEngine.ele.offsetWidth - this.ele.offsetWidth) / 2);
+		this.ele.style.left = centerX + "px";
+		
+		
+		this.startDrag(); // 支持拖拽
+	},
+	
+	// 支持拖拽
+	startDrag: function() {
+		
+		var self = this;
+		
+		// 鼠标按下
+		this.ele.onmousedown = function(e) {
+			// 获取鼠标点击在 飞机图片 中的偏移
+			var disX = e.offsetX;
+			var disY = e.offsetY;
+			
+			// 在整个页面中移动
+			document.onmousemove = function(e) {
+				
+				// 计算飞机元素的 位置
+				var x = e.clientX - disX - gameEngine.ele.offsetLeft;
+				var y = e.clientY - disY;
+				
+				// 左边界
+				if (x < 0) {
+					x = 0;
+				}
+				
+				// 右边界
+				if (x > gameEngine.ele.offsetWidth - self.ele.offsetWidth) {
+					// 最大宽度 = 游戏面板宽度 - 飞机元素的宽度
+					x = gameEngine.ele.offsetWidth - self.ele.offsetWidth;
+				}
+				
+				// 更新位置
+				self.ele.style.left = x + "px";
+				self.ele.style.top = y + "px";
+			}
+			
+			// 鼠标抬起
+			document.onmouseup = function() {
+				document.onmousemove = null;
+				document.onmouseup = null;
+			}
+		}
+	}
+};
+
+
+			
+		</script>
+	</head>
+	<body>
+		<div id="main_body" class="main">
+			
+			
+		</div>
+	</body>
+
+<script>
+
+onload = function() {
+	gameEngine.start();
+}
+	
+</script>	
+	
+</html>

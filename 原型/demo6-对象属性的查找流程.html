@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+<script>
+
+function Person() {
+//	this.name = "张三"; 
+}
+
+Person.prototype.name = "李四";
+
+var p1 = new Person();
+
+// 对象中的属性，查找流程：
+//  1、先找自己对象中是否存在这个属性，如果有，就返回这个结果
+//  2、 如果找不到，就在原型对象中查找，如果有，就返回
+//                            如果没有就是 undefined 
+console.log(p1.name);  // 张三
+
+//Person.prototype.name = "李四";
+//var p1 = new Person();
+//
+//// 对象中的属性，查找流程：
+////  1、先找自己对象中是否存在这个属性，如果有，就返回这个结果
+////  2、 如果找不到，就在原型对象中查找，如果有，就返回
+////                            如果没有就是 undefined 
+//console.log(p1.name);  // 李四
+
+
+
+//function Person() {
+//}
+//
+//var p1 = new Person();
+//
+//// 对象中的属性，查找流程：
+////  1、先找自己对象中是否存在这个属性，如果有，就返回这个结果
+////  2、 如果找不到，就在原型对象中查找，如果有，就返回
+////                            如果没有就是 undefined 
+//console.log(p1.name);  // undefined
+
+
+
+function Person() {
+}
+
+// 家庭
+Person.prototype.family = ["爸爸", "妈妈", "妹妹"];
+
+var p1 = new Person();
+
+console.log(p1.family);  // ["爸爸", "妈妈", "妹妹"]
+
+var p2 = new Person();
+
+// 所有对象共用的family, 将所有对象的家庭成员都增加了弟弟
+p2.family.push("弟弟");
+
+console.log(p2.family);  //  ["爸爸", "妈妈", "妹妹", "弟弟"]
+console.log(p1.family);  //  ["爸爸", "妈妈", "妹妹", "弟弟"]
+
+
+
+
+//function Person() {
+//	this.family = ["爸爸", "妈妈"];
+//}
+//
+//var zhangsan = new Person();
+//
+//console.log(zhangsan.family); // ["爸爸", "妈妈"]
+//
+//
+//var lisi = new Person();
+//
+//lisi.family.push("妹妹");
+//
+//console.log(lisi.family); // ["爸爸", "妈妈", "妹妹"]
+//
+//console.log(zhangsan.family); // ["爸爸", "妈妈"]
+
+// 所以，对于自己对象独有的属性，建议放在自己的对象里面
+//     对于共有的函数，建议放到 原型对象中，节约空间
+
+</script>	
+	
+</html>

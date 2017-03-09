@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			
+			ul, li {
+				list-style: none;
+			}
+			
+			#box {
+				width: 500px;
+				height: 400px;
+				position: relative;
+			}
+			
+			#list {
+				width: 500px;
+				height: 300px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			#list li {
+				width: 500px;
+				height: 300px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 1;
+				filter: alpha(opacity=100);
+			}
+			
+			#list img {
+				width: 500px;
+				height: 300px;
+			}
+			
+			#list2 {
+				width: 500px;
+				height: 100px;
+				background: #999;
+				position: absolute;
+				left: 0;
+				top: 300px;
+			}
+			
+			#list2 li {
+				width: 100px;
+				height: 100px;
+				float: left;
+				opacity: 0.3;
+				filter: alpha(opacity=30);
+			}
+			
+			#list2 img {
+				width: 100px;
+				height: 100px;
+			}
+			
+			
+		</style>
+
+		
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li><img src="img/1.jpg" /></li>
+				<li><img src="img/2.jpg" /></li>
+				<li><img src="img/3.jpg" /></li>
+			</ul>
+			<ul id="list2">
+				<li><img src="img/1.jpg" /></li>
+				<li><img src="img/2.jpg" /></li>
+				<li><img src="img/3.jpg" /></li>
+			</ul>
+		</div>
+
+<script type="text/javascript" src="js/day19-move.js" ></script>
+<script>
+
+var oUl = document.getElementById("list");
+var allLi = oUl.getElementsByTagName("li");
+
+allLi[0].style.zIndex = 100;
+
+var i = 0;
+var t = 1000;
+
+var timer = setInterval(move, t);
+
+function move() {
+	clearInterval(timer);
+	
+	i++; // 执行下一张
+	if (i >= 3) {
+		i = 0;
+	}
+	
+	for (var j = 0; j < allLi.length; j++) {
+		allLi[j].style.zIndex = 1;
+		
+		allLi[j].style.opacity = 0.1; // 修改为透明状态
+	}
+	allLi[i].style.zIndex = 100;
+	
+	startMove(allLi[i], "opacity", 100, next);
+}
+
+function next() {
+	timer = setInterval(move, t);
+}
+	
+</script>		
+		
+	</body>
+</html>

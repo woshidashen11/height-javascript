@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+//练习：实现以下类的原型链继承
+
+// 父类：Cat
+//方法：	eat; miaow
+//属性：	fur
+//说明： eat吃各种东西
+//
+//子类1： GarfieldCat
+//方法：eat; miaow; talk
+//属性：fur; glasses
+//说明：eat只吃肉
+
+
+function Cat() {
+	this.fur = "红色";
+}
+
+Cat.prototype.eat = function() {
+	console.log("吃各种东西");
+}
+
+Cat.prototype.miaow = function() {
+	console.log("喵喵喵~");
+}
+
+function GarfieldCat() {
+	this.glasses = "暴龙眼镜"; // 自己的属性
+}
+
+// 继承猫的所有属性
+GarfieldCat.prototype = new Cat(); 
+
+GarfieldCat.prototype.talk = function() {
+	console.log("我可以说话!");
+}
+
+// 重写 eat
+GarfieldCat.prototype.eat = function() {
+	console.log("只吃肉！");
+}
+
+
+var cat = new GarfieldCat();
+	
+cat.talk();  // 自己的方法 talk
+console.log( cat.fur );  // 红色
+cat.eat();
+
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

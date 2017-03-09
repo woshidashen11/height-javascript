@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			body, html {
+				width: 100%;
+				height: 100%;
+				background: url(img/bg.jpg) center;
+				position: fixed;
+			}
+			.fire {
+				width: 29px;
+				height: 29px;
+				position: absolute;
+			}
+
+		</style>
+		<script type="text/javascript" src="js/day20-move.js" ></script>		
+		<script>
+
+// 面向对象的思路
+
+// 1、找对象
+//               属性                                        行为/函数/方法
+//   萤火虫     位置，大小，颜色(节点对象)       飞
+
+// 因为萤火虫数量比较多，要创建多个，所以采用构造方法会比较好一点
+function FireWorm() {
+	//this = {};
+	
+	// shift+TAB 可以往左缩进
+	
+	// 对象的属性，
+	this.ele = document.createElement("img");
+	this.ele.src = "img/1.jpg";
+	this.ele.className = "fire";
+	document.body.appendChild(this.ele); // 显示
+	
+	// 调整萤火虫的位置
+	//   point() 说明是调用自己的函数，返回结果是 对象，{left:随机X,top:随机Y} 
+	//                                       {left:随机X,top:随机Y}.left	
+
+	this.ele.style.left = point().left + "px";
+	this.ele.style.top = point().top + "px";
+
+	// 对象的行为
+	//  this 是萤火虫对象
+	this.fly = function() {
+		// this 是当前函数运行时依附的对象
+		var self = this;  // self 保存this，是萤火虫对象
+		
+		startMove(this.ele, {left:parseInt(Math.random()*300), top:parseInt(Math.random()*300)}, function() {
+//			console.log(this);
+			// this 不是萤火虫对象     window
+			
+			// self 就是萤火虫对象了
+			self.fly();
+		});
+	}
+	
+}
+
+
+//随机位置， 返回结果是一个对象
+function point(){
+	var x = parseInt(Math.random() * document.documentElement.clientWidth);
+	var y = parseInt(Math.random() * document.documentElement.clientHeight);
+	
+	return {left:x,top:y};
+	
+}
+
+// 创建对象
+onload = function() {
+	for (var i = 0; i < 1; i++) {
+		// 创建一个萤火虫对象，让它飞
+		new FireWorm().fly();
+	}
+}
+
+			
+		</script>
+		
+	</head>
+	<body>
+		<!--<img src="img/1.jpg" class="fire">	-->
+	</body>
+</html>

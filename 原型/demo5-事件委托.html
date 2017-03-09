@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<style>
+	td {
+		width: 300px;
+		height: 30px;
+		background: red;
+	}
+</style>		
+		
+	</head>
+	<body>
+	<table>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>	
+		
+	</body>
+
+<script>
+
+var oTable = document.getElementsByTagName("table")[0];
+
+// 点击 td 点击事件传播给 table
+// 事件委托：  将事件处理的功能委托给父级元素来处理。 可以减少绑定事件的个数，从而节约空间
+oTable.onclick = function() {
+	alert();
+}
+
+//
+//var allTd = document.getElementsByTagName("td");
+//for (var i = 0; i < allTd.length; i++) {
+//	
+//	// 执行了 15次，onclick 就有15个 ==> 15个的空间
+//	allTd[i].onclick = function() {
+//		alert();
+//	}
+//}
+	
+</script>
+	
+</html>

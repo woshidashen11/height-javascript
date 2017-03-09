@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				width: 50px;
+				height: 50px;
+				background: red;
+				border-radius: 50%;
+				position: absolute;
+				left: 50px;
+				top: 200px;
+			}
+		</style>
+		
+		<script>
+onload = function() {
+	//红色的球
+	var oBox = document.getElementById("box");
+	
+	var speed = -20;
+	
+	var timer = setInterval(function() {
+		// 往上走                                往下走(越走越快)
+		// -20，-19， -18， ... 0, 1, 2 ...
+		speed++; 
+		
+		console.log(speed);
+		
+		oBox.style.top = oBox.offsetTop + speed + "px";
+		
+		// 最大高度：  可视区域页面的高度 - 球的高度
+		var maxHeight = document.documentElement.clientHeight - oBox.offsetHeight;
+		if (speed > 0 && oBox.offsetTop >= maxHeight) {
+			
+			oBox.style.top = maxHeight + "px"; // 落在地面上
+			
+			speed = -1*speed; // 反弹(往上走)
+			speed *= 0.9; // 摩擦损耗
+			speed = parseInt(speed);
+			
+			//clearInterval(timer);
+		}
+	}, 30);
+}
+		</script>
+		
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

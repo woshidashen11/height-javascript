@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+// 动物
+//function Animal() {
+//	this.type = "动物";  // 种类
+//}
+//
+//// 狗
+//function Dog() {
+//	
+//}
+//
+//// 因为狗也是动物，所以可以继承动物的所有属性和方法
+//Dog.prototype = new Animal();
+//
+//var singleDog = new Dog();
+//
+//console.log(singleDog.type);  // 动物 ， 继承了父类的属性
+
+
+
+// 动物
+//function Animal() {
+//	this.type = "动物";  // 种类
+//}
+//
+//// 狗
+//function Dog() {
+//	this.color = "yellow";  // 子类也可以有自己的属性
+//}
+//
+//// 因为狗也是动物，所以可以继承动物的所有属性和方法
+//Dog.prototype = new Animal();
+//
+//var singleDog = new Dog();
+//
+//console.log(singleDog.type);  // 动物 ， 继承了父类的属性
+//console.log(singleDog.color);  // yellow
+
+
+
+
+// 动物
+//function Animal() {
+//	this.type = "动物";  // 种类
+//}
+//
+//// 狗
+//function Dog() {
+//	this.type = "单身狗";  // 自己的属性 ==> 可以覆盖父类中的属性
+//	this.color = "yellow";  // 子类也可以有自己的属性
+//}
+//
+//// 因为狗也是动物，所以可以继承动物的所有属性和方法
+//Dog.prototype = new Animal();
+//
+//var singleDog = new Dog();
+//
+//// singleDog.type
+////   1、在自己的对象中找，找到了，所以就直接返回
+//
+//console.log(singleDog.type);  // 单身狗
+//console.log(singleDog.color);  // yellow
+
+function A(){
+	this.type = "土狗";
+}
+function D(){
+	this.type = "单身狗";
+}
+
+D.prototype = new A();
+D.prototype.dark = function(){
+	console.log("旺旺");
+}
+var dog = new D();
+console.log(dog.type);
+dog.dark();
+//
+//function Animal() {
+//	this.type = "动物";
+//}
+//
+//function Dog() {
+//}
+//
+//// 狗吠
+//Dog.prototype.bark = function() {
+//	console.log("汪汪汪！");
+//}
+//
+//Dog.prototype = new Animal();
+//
+//var dog = new Dog();
+//
+//// 注意 bark 方法要写在继承语句的后面，防止被覆盖
+//dog.bark();
+
+	
+</script>		
+		
+	</head>
+	<body>
+	</body>
+</html>

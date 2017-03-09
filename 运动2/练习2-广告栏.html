@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				height: 2000px;
+			}
+			
+			#box {
+				width: 100px;
+				height: 100px;
+				background: blue;
+				position: absolute;
+				right: 0;
+				top: 0;
+				color: white;
+				/*border: 100px solid red;*/
+			}
+			
+		</style>
+<script type="text/javascript" src="js/day19-move.js" ></script>
+<script>
+// 练习:
+//  1、方块缓冲动画到页面中间部位, 在如下的情况下：
+
+
+//      1.在页面加载完成时 onload
+//      2.滚动条滚动时   onscroll
+//      3.页面改变大小时 onresize
+
+
+function move() {
+	
+	var oBox = document.getElementById("box");
+	
+	var iTop = document.documentElement.clientHeight / 2;
+	iTop -= oBox.offsetHeight / 2;
+	
+	// 添加滚动条的距离
+	iTop +=  document.documentElement.scrollTop || document.body.scrollTop;
+	
+	iTop = parseInt(iTop);
+
+	startMove(oBox, "top", iTop);
+}
+
+//// 将move函数赋值给 onload
+//onload = move;
+//
+//onscroll = move;
+//
+//onresize = move;
+
+onload = onscroll = onresize = move;
+
+</script>
+
+	</head>
+	<body>
+		<div id="box">我是广告栏</div>
+	</body>
+	
+</html>

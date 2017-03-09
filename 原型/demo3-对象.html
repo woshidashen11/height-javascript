@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+<script>
+
+//var stu1 = {
+//	name: "zhangsan"
+//};
+//
+//var stu2 = {
+//	name: "lisi"
+//};
+//
+//console.log( stu1.name == stu2.name); // false
+
+
+//var stu1 = {
+//	name: "lisi"
+//};
+//
+//var stu2 = {
+//	name: "lisi"
+//};
+//
+//// 对于字符串类型，== 比较的是值，只要值相等，结果就为 true
+////             === 比较的是 类型 和 值，因为两者都是字符串，并且值都是 lisi,所以结果是 true
+//console.log( stu1.name === stu2.name); // true
+
+
+
+var stu1 = {
+	name: "lisi",
+	show: function() {
+		console.log("自我介绍！");
+	}
+};
+
+var stu2 = {
+	name: "lisi",
+	show: function() {
+		console.log("自我介绍！");
+	}
+};
+
+
+// stu1.show  与 stu2.show  都是函数，类型是相等的
+// 
+console.log( stu1.show == stu2.show); // false
+
+
+
+</script>	
+	
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+面向对象：  首先找    对象 ==>  找对象中 属性  和 方法
+
+1、字面量的形式 
+var obj = {
+	name: "张三",
+	show: function() {}
+}
+
+工厂模式(函数封装)
+
+2、构造函数的方式（解决了对象是谁创建的问题）
+function Person() {
+	this.name = "张三";
+	
+	this.show = function() {}
+}
+
+var zhangsan = new Person();
+
+(zhangsan instanceof Person)
+
+3、 原型的方式
+function Person() {}
+
+Person.prototype.name = "张三"；
+Person.prototype.show = function() {}
+
+
+对象属性查找流程：
+(1) 先自己里面找
+(2) 再在原型对象中找
+
+
+4、构造方法 + 原型的方式
+function Person() {
+	this.name = "zhangsan";
+}
+
+Person.prototype.show = function() {}; 
+
+
+
+var stu = {age:18};
+delete stu.age;  // 删除属性
+
+
+
+
+[作业] 构造方法 + 原型
+使用面向对象的思想(构造函数+原型)实现烟花效果
+
+对象： 烟花筒            烟花碎片
+
+                               属性                                                          方法
+烟花筒         颜色、大小、位置(节点)        发射， 爆炸，掉下来
+烟花碎片     颜色、大小、位置(节点)        掉下来(随机抛物运动)
+
+
+index.html
+
+onload = function() {
+	new 烟花筒().发射();
+}
+
+
+发射 {
+	发射完成之后，移除烟花筒，
+	并且创建  烟花碎片.掉下来()   
+}
+
+
+
+
+
+		
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+// 封装函数，用于创建人类， 返回人类对象
+//function createPerson() {
+//	var person = {};
+//	
+//	person.name = "小明";
+//	person.age = 18;
+//	
+//	person.show = function() {
+//		console.log("自我介绍！");
+//	}
+//	
+//	return person;
+//}
+//
+//
+//var xiaoming = createPerson();
+//xiaoming.show();
+//
+//var xiaohong = createPerson();
+//xiaohong.show();
+
+// 封装函数，用于创建人类， 返回人类对象
+function createPerson(name) {
+	var person = {};
+	
+	person.name = name;
+	person.age = 18;
+	
+	person.show = function() {
+		console.log(person.name + ": 自我介绍！");
+	}
+	
+	return person;
+}
+
+
+var xiaoming = createPerson("小明");
+xiaoming.show();
+
+var xiaohong = createPerson("小红");
+xiaohong.show();
+
+createPerson("小莫").show();
+
+	
+</script>		
+		
+	</head>
+	<body>
+	</body>
+</html>

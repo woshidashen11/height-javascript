@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	
+<script>
+
+//var stu = {age:18};
+//
+////console.log(stu.age); // 18
+//
+//delete stu.age;  // 删除学生对象中的 age 
+//	
+//console.log(stu.age); // undefined	
+
+
+a = 100;  // 相当于  window.a = 100;
+
+//console.log(window.a); //100
+
+delete window.a; // 删除 window中的a
+
+console.log(window.a); //undefined
+console.log(a); // 找不到 a，出错了
+
+var a = 100;
+
+//console.log(window.a); // 100
+delete a;  // var定义的变量不能删除
+
+console.log(window.a); // 100
+
+
+
+</script>	
+</html>

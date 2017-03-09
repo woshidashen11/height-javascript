@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+
+//function aa() {
+//	var n = 10;
+//}
+//
+//aa();
+//console.log(n);  //undefined
+
+
+//function aa() {
+//	var n = 10;
+//	
+//	function bb() {
+//		console.log(n);  
+//	}
+//}
+//// 因为 bb 是一个局部变量，不能在外部访问
+//bb(); // 出错
+
+
+//function bb() {
+//	console.log("bb");
+//}
+//bb();
+//
+//// 将函数 bb 赋值给 aa
+//var aa = bb;
+//aa(); // bb
+
+
+//var aa = function() {
+//	console.log("aa");
+//}
+//
+//// 函数要执行必须要调用
+//aa(); // aa
+
+
+// () 将函数括起来是作为一个整体，说明是一个函数
+//(function () {
+//	console.log("匿名函数");
+//})
+
+//匿名函数 后增加了 (), 称为 匿名函数的自运行
+//(function () {
+//	console.log("匿名函数");
+//})(); // 匿名函数
+
+
+
+//function aa() {
+//	var n = 0;
+//	// aa 函数返回的结果是 一个函数
+//	return (function () {		
+//		// 闭包： 函数内部使用了外部的变量， 变量的空间不会自动释放		
+//		// n 是一个变量，会自动的往外层找
+//		console.log(n++);
+//	});
+//}
+//// cc 就是一个函数
+//var cc = aa();
+//cc();  // 0
+//cc();  // 1  
+//console.log(n); // 找不到，出错
+
+//var aa = (function () {
+//	return function(name) {
+//		console.log(name);
+//	}
+//})();
+//
+////aa 是一个函数
+//aa("皮卡丘");
+
+
+//var a = 10; // 全局的变量
+//
+//function bb() {
+////	var n = 10;  // 局部变量
+//}
+//console.log(a); //10
+//console.log(n); //找不到
+
+
+
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

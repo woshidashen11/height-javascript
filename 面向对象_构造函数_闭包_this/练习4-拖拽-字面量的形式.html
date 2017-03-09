@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box" style="background: red; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+	</body>
+	
+
+<script>
+
+// 面向对象的思路
+//  拖拽
+//  1、找对象
+//                  属性                                                                                                方法/行为
+//     拖拽的Div    颜色、宽高、位置、背景(节点)  拖拽点击的开始位置           移动、停止、开始
+
+//  字面量
+
+
+// 创建对象
+var dragObj = {};
+
+// 节点属性
+dragObj.ele = document.getElementById("box");
+dragObj.disX = 0;  // 鼠标在点击物体的位置
+dragObj.disY = 0;
+
+
+// 方法：
+//   1、移动
+dragObj.move = function(clientX, clientY) {
+	var x = clientX - dragObj.disX;
+	var y = clientY - dragObj.disY;
+	
+	dragObj.ele.style.left = x + "px";
+	dragObj.ele.style.top = y + "px";
+}
+
+//   2、开始
+dragObj.start = function() {
+	// this ==> dragObj
+	var self = this;
+	
+	dragObj.ele.onmousedown = function(e) {
+		// this  ===> dragObj.ele
+		
+		// 将两个位置距离保存到  dragObj 里面
+		self.disX = e.offsetX;
+		self.disY = e.offsetY;
+		
+		document.onmousemove = function(e) {
+			dragObj.move(e.clientX, e.clientY);
+		}
+		
+		document.onmouseup = function() {
+			dragObj.stop();
+		}
+	}
+}
+
+// 3、停止
+dragObj.stop = function() {
+	document.onmousemove = null;
+	document.onmouseup = null;  // 释放
+}
+
+
+// 开始拖拽
+dragObj.start();
+
+
+
+var dragObj = {
+	ele:  document.getElementById("box"),
+	disX: 0,
+	disY: 0
+};
+
+
+// 方法：
+//   1、移动
+dragObj.move = function(clientX, clientY) {
+	var x = clientX - dragObj.disX;
+	var y = clientY - dragObj.disY;
+	
+	dragObj.ele.style.left = x + "px";
+	dragObj.ele.style.top = y + "px";
+}
+
+//   2、开始
+dragObj.start = function() {
+	// this ==> dragObj
+	var self = this;
+	
+	dragObj.ele.onmousedown = function(e) {
+		// this  ===> dragObj.ele
+		
+		// 将两个位置距离保存到  dragObj 里面
+		self.disX = e.offsetX;
+		self.disY = e.offsetY;
+		
+		document.onmousemove = function(e) {
+			dragObj.move(e.clientX, e.clientY);
+		}
+		
+		document.onmouseup = function() {
+			dragObj.stop();
+		}
+	}
+}
+
+// 3、停止
+dragObj.stop = function() {
+	document.onmousemove = null;
+	document.onmouseup = null;  // 释放
+}
+
+
+// 开始拖拽
+dragObj.start();
+</script>
+
+	
+</html>

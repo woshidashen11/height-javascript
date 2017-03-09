@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+//var arr = [1, 2, 3];
+//
+//// 只删除第2号敌机
+//
+//
+//
+//
+////arr.pop(); // 3 的敌机
+//	
+
+
+var enemies = {};
+
+enemies["1"] = 1; // 添加了1号敌机
+enemies["2"] = 2; // 添加了2号敌机
+enemies["3"] = 3; // 添加了3号敌机
+
+// 删除第2号敌机
+delete enemies["2"];
+
+for (var i in enemies) {
+	console.log(enemies[i]);
+}
+
+
+
+</script>		
+		
+	</head>
+	<body>
+	</body>
+</html>

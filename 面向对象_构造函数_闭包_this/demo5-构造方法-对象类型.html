@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+
+//     构造方法                                      工厂模式
+//       不需要手动创建对象                  需要
+//       不需要返回这个对象                  需要
+//       创建对象时必须写 new      不需要
+
+
+// 构造方法：   创建对象
+function Person() {
+	// this = {}; // new 的方式，会自动写上这句话
+	
+	this.name = "张三";    // 在 this 对象中新增了 name 的属性
+	
+}
+
+
+// new :  在函数中，自动创建一个对象：   this
+//           this = {};
+// new 会自动地将这个 this 返回
+var p1 = new Person();
+
+console.log( p1.name );
+
+//function Dog() {}
+//
+////          instanceof  是谁的实例(对象)
+//console.log( p1 instanceof Dog );   // false
+//console.log( p1 instanceof Person );   // true
+
+
+//  字面量的形式(工厂模式)                 构造方法
+//     var obj = {}                function Person()   【建议构造方法名首字母大写】
+//     obj.name = "张三"                this.name = "张三"
+//     obj.show = function() {}         this.show = function() {}  
+//        return obj                       不需要return。   【new Person】
+
+
+//Cat: 猫
+//属性：fur   (皮毛颜色)
+//方法：eat (吃); miaow （叫）
+//
+
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

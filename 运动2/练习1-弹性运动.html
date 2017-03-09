@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul, li {
+				list-style: none;
+			}
+
+			#list {
+				width: 400px;
+				height: 30px;
+				margin: 100px auto;
+				position: relative;
+			}
+			#list li {
+				width: 98px;
+				height: 28px;
+				border: 1px solid #ccc;
+				float: left;
+				line-height: 28px;
+				text-align: center;
+				cursor: pointer;
+			}
+			#list .bg {
+				width: 100px;
+				height: 3px;
+				background: red;
+				position: absolute;
+				top: 25px;
+				left: 0px;
+			}
+
+		</style>
+		<script>
+
+onload = function() {
+	var oList = document.getElementById("list");
+	
+//	console.log( oList.id ); // list
+//	console.log( oList.index ); // undefined
+//	console.log( oList.style.left ); // ""
+	
+	// 相当于在 oList 对象中新增了这个属性 index, 值是 100
+//	oList.index = 100;
+//	
+//	console.log( oList.index ); // 100
+//	
+	
+	var allLi = oList.getElementsByTagName("li");
+	var oBg = allLi[allLi.length-1]; //红色的bg
+	
+	// 每个Li的宽度
+	var width = allLi[0].offsetWidth;
+	
+	for (var i = 0; i < allLi.length-1; i++) {
+		allLi[i].index = i; 
+		allLi[i].onmouseover = function() {
+			var iLeft = this.index * width;
+			
+			
+			// [练习] 实现弹性运动
+			// oBg.style.left = iLeft + "px";
+		}
+	}	
+
+}
+
+		</script>
+
+	</head>
+	<body>
+		<ul id="list">
+			<li>首页</li>
+			<li>关于我们</li>
+			<li>产品</li>
+			<li>联系我们</li>
+			<li class="bg"></li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			body, html {
+				width: 100%;
+				height: 100%;
+				background: black;
+				overflow: hidden;
+			}
+			
+			.fire {
+				width: 3px;
+				height: 30px;
+				background: white;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			.spark {
+				width: 3px;
+				height: 3px;
+				background: red;
+				position: absolute;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<!--<div class="fire" style="left: 300px; top: 300px"></div>
+		-->
+	</body>
+
+<script type="text/javascript" src="js/day20-move.js" ></script>
+<script>
+
+// 页面上任何位置点击
+document.onclick = function(e) {
+	
+	// 获取点击位置
+	var x = e.clientX;
+	var y = e.clientY;
+	
+	
+	// 创建div
+	var oDiv = document.createElement("div");
+	
+	// 设置样式
+	oDiv.className = "fire";
+	
+	oDiv.style.left = ""+ x +"px";
+	// 点击位置所对应的对面
+	oDiv.style.top = (document.documentElement.clientHeight - 30) +"px";
+	
+	document.body.appendChild(oDiv); // 添加到body
+	
+	// 使用缓冲动画进行发射
+	startMove(oDiv, {"top": y, "height": 3}, function() {
+		// 动画完成，标志烟花已经到点击的位置
+		
+		document.body.removeChild(oDiv); // 移除
+		
+		// 创建烟花： 
+		//   将创建烟花的代码放到一个函数中，容易阅读，方便管理代码
+		for (var i = 0; i < 30; i++) {
+			createSpark(x, y);
+		}
+	});
+}
+
+
+// [练习] 阅读代码
+// [扩展] 创建30个碎片
+		
+function createSpark(x, y) {
+//	for (var i = 0; i < 3; i++) {
+		
+		var oSpark = document.createElement("div");
+		
+		oSpark.className = "spark";
+		
+		// 随机颜色
+		var red = parseInt(Math.random()*256);
+		var green = parseInt(Math.random()*256);
+		var blue = parseInt(Math.random()*256);
+		
+		oSpark.style.background = "rgb("+red+","+green+"," + blue+")";
+		
+		oSpark.style.left = x + "px";
+		oSpark.style.top = y + "px";
+		
+		document.body.appendChild(oSpark);
+		
+		
+		// 产生 [0,20) 的值
+		var xSpeed = parseInt(Math.random() * 20);
+		var ySpeed = parseInt(Math.random() * 20);
+		
+		// 随机产生正数或负数
+		xSpeed = (Math.random() > 0.5) ? xSpeed : -xSpeed;
+		ySpeed = (Math.random() > 0.5) ? ySpeed : -ySpeed;
+		 
+		var timer = setInterval(function() {
+			ySpeed++;
+			
+			oSpark.style.left = oSpark.offsetLeft + xSpeed + "px";
+			oSpark.style.top = oSpark.offsetTop + ySpeed + "px";
+			
+			if (oSpark.offsetLeft < 0 || oSpark.offsetTop > document.documentElement.clientHeight) {
+				document.body.removeChild(oSpark);
+				clearInterval(timer);
+			}
+		}, 30);
+//	}
+}
+
+</script>
+	
+</html>
+
+

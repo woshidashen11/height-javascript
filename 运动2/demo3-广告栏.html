@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				height: 2000px;
+			}
+			
+			#box {
+				width: 100px;
+				height: 100px;
+				background: blue;
+				position: absolute;
+				right: 0;
+				top: 0;
+				color: white;
+				/*border: 100px solid red;*/
+			}
+			
+		</style>
+<script type="text/javascript" src="js/day19-move.js" ></script>
+<script>
+// 练习:
+//  1、方块缓冲动画到页面中间部位
+//  2、在改变页面大小时
+onload = function() {
+//	var oBox = document.getElementById("box");
+	
+//	console.log( oBox.offsetHeight, oBox.clientHeight );
+	
+	// document.body 等价下面的代码
+//	var oBody = document.getElementsByTagName("body")[0];
+//	console.log( document.body.clientHeight );
+
+	// document.documentElement 代表 html 节点对象
+	// document.documentElement.clientHeight 是页面可视区域的高度
+//	console.log( document.documentElement.clientHeight );
+
+
+	var oBox = document.getElementById("box");
+	
+	// 浏览器的中间位置
+	var iTop = document.documentElement.clientHeight / 2;
+	
+	iTop -= oBox.offsetHeight / 2;
+	
+	// 移动函数传递参数是整数，所以这里取整
+	iTop = parseInt(iTop);
+	
+	// Alt + 鼠标点击，可以跳转到函数定义处
+	startMove(oBox, "top",  iTop);
+}
+	
+</script>
+
+	</head>
+	<body>
+		<div id="box">我是广告栏</div>
+	</body>
+	
+</html>

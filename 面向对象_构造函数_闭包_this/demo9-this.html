@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+// this
+
+//oBtn.onclick = function() {
+//	this; // oBtn
+//}
+
+
+//var stu = {};
+//
+//stu.name = "张三";
+//stu.show = function() {
+//	// this 就是函数运行时，所依附的对象
+//	console.log( this.name );
+//}
+//
+//stu.show();
+
+
+//function Cat(fur) {
+//	this.fur = fur;
+//	
+//	this.show = function() {
+//		console.log("show: " + this.fur); 
+//	}
+//}
+//
+//var cat1 = new Cat("红色");
+//var cat2 = new Cat("黄色");
+//
+//
+//cat1.show();      // this 是 cat1
+//cat2.show();      // this 是 cat2
+
+
+
+
+
+</script>		
+		
+	</head>
+	<body>
+
+<input type="button" value="按钮" id="btn1" />
+
+	</body>
+
+<script>
+
+var oBtn = document.getElementById("btn1");
+
+oBtn.onclick = function() {
+	
+	setInterval(function() {
+		// 这里的this，是定时器函数所依附的对象 ==> window 对象
+		console.log( this.id );  // undefined
+	}, 1000);
+}
+
+	
+</script>
+	
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box1" style="background: red; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+		<div id="box2" style="background: yellow; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+		<div id="box3" style="background: blue; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+		<div id="box4" style="background: green; width: 100px; height: 100px; position: absolute; left: 10px; top: 10px;"></div>
+	</body>
+	
+<script type="text/javascript" src="js/DragBox.js" ></script>
+<script>
+
+
+// [练习] 使用 构造方法+原型   来创建对象 (可以复制自己之前写的代码)
+
+// 面向对象的思路
+//  拖拽
+//  1、找对象
+//                  属性                                                          方法/行为
+//     拖拽的Div    颜色、宽高、位置、背景(节点)    移动、停止、开始
+
+
+//构造方法+原型
+//  创建对象时，可以传递 div 的 id 进来
+//  共有的方法，可以添加到  原型对象中，节约空间
+
+
+
+new DragObj("box1").start();
+new DragObj("box2").start();
+new DragObj("box3").start();
+new DragObj("box4").start();
+
+
+</script>
+
+	
+</html>

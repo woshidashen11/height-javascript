@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+function Cat(fur, name) {
+	// 通过 对象冒充，  用加菲猫对象 来冒充 this
+	//   加菲猫.fur = fur
+	this.fur = fur;
+	this.name = name;
+}
+
+Cat.prototype.miaow = function() {
+	console.log("喵喵喵！");
+}
+// 对于对象中自己需要穿参的属性，可以使用 对象冒充的方式来解决
+
+// 加菲猫
+function GarfieldCat(fur, name) {
+	// 用当前加菲猫这个对象 冒充  Cat 里面 this
+	//     fur 传递给 Cat 的构造方法
+	//     name 传递给 Cat 的构造方法
+	Cat.call(this, fur, name);
+}
+
+// 继承猫类
+GarfieldCat.prototype = new Cat();
+
+var cat = new GarfieldCat("红色", "胖胖的");
+
+// cat.miaow
+
+cat.miaow();
+
+console.log(cat.fur); // 红色
+console.log(cat.name); // 红色
+
+
+</script>		
+		
+	</head>
+	<body>
+	</body>
+</html>

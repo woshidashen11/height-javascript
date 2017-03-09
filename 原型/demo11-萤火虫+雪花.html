@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		
+		<script type="text/javascript" src="js/day20-move.js" ></script>
+		<script type="text/javascript" src="js/FireWorm.js" ></script>
+		
+		<!--引入的js文件相当于就是写在这里-->
+		<script type="text/javascript" src="js/Snow.js" ></script>
+	</head>
+	<body>
+	</body>
+	
+<script>
+
+// 浏览器失去焦点
+window.onblur = function() {
+	console.log("浏览器失去焦点...");
+}
+
+window.onfocus = function() {
+	console.log("浏览器重新获取到焦点...");
+}
+
+
+// 练习： 实现 萤火虫 + 雪花 的效果
+
+setInterval(function() {
+	new Snow().down();  // 往下落
+}, 1000);
+
+
+for (var i = 0; i < 3; i++) {
+	new FireWorm().fly();
+}
+	
+</script>	
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button> 按钮1 </button>
+		<button> 按钮2 </button>
+		<button> 按钮3 </button>
+		<button> 按钮4 </button>
+		<button> 按钮5 </button>
+	</body>
+<script>
+
+var allBtn = document.getElementsByTagName("button");
+
+for (var i = 0; i < allBtn.length; i++) {
+	allBtn[i].index = i;
+	allBtn[i].onclick = function() {
+		alert(this.index + 1);
+	}
+}
+
+
+//var allBtn = document.getElementsByTagName("button");
+//for (var i = 0; i < allBtn.length; i++) {
+//	
+//	allBtn[i].onclick = (function(index) {
+//		return function() {
+//			alert(index); // 访问外部变量
+//		}
+//	})(i);
+	
+	// 0 ==> index
+//	allBtn[0].onclick = (function(index) {
+//		return function() {
+//			alert(index); // 访问外部变量
+//		}
+//	})(0);
+
+//	allBtn[0].onclick = function() {
+//			alert(0); // 访问外部变量
+//  }
+
+
+	// 1 ==> index
+//	allBtn[1].onclick = (function(index) {
+//		return function() {
+//			alert(index); // 访问外部变量
+//		}
+//	})(1);
+//}
+
+	
+</script>	
+	
+</html>

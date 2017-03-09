@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			body{
+				width: 1265px;
+				height: 500px;
+				background: url(images/bg.jpg);
+			}
+			.ibox{
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				background: url(images/1.jpg);
+				display: block;
+			}
+			.timg{
+				width: 50px;
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	
+onload=function(){
+	
+	// 1、创建40个萤火虫
+	for (var i = 0; i < 40; i++) {
+		
+		// 随机位置
+		var x=parseInt(Math.random()*1200);
+		var y=parseInt(Math.random()*500);
+		
+		// 创建萤火虫
+		createfirefly(x,y);
+	}
+}
+	
+	
+function createfirefly(x,y){
+	
+	var obody=document.getElementsByTagName("body")[0];
+    
+    // 萤火虫
+    var oimg=document.createElement("img");
+	var ospan=document.createElement("span");
+	ospan.className="ibox"
+	oimg.className="timg";
+	oimg.src="images/1.jpg";
+	
+	// 位置修改
+	ospan.style.left=x+"px";
+	ospan.style.top=y+"px";
+	
+	// 将萤火虫添加到 页面中
+	ospan.appendChild(oimg);
+	obody.appendChild(ospan);
+	
+	// 萤火虫运动、x,y 的速度
+	var xSpeed = parseInt(Math.random() * 3);
+	var ySpeed = parseInt(Math.random() * 3);
+	
+	xSpeed = (Math.random() > 0.5) ? xSpeed : -xSpeed;
+	ySpeed = (Math.random() > 0.5) ? ySpeed : -ySpeed;
+	
+	var timer = setInterval(function() {
+		
+		// 定时更新萤火虫的位置
+		ospan.style.left = ospan.offsetLeft + xSpeed + "px";
+		ospan.style.top = ospan.offsetTop + ySpeed + "px";
+		
+		if (ospan.offsetLeft < 0 || oSpan.offsetTop > document.documentElement.clientHeight
+		 || oSpan.offsetTop < 0 || oSpan.offsetleft > document.documentElement.clientWidth) {
+	 		
+	 		// 萤火虫超出边界，反向
+			xSpeed *= -1;
+			ySpeed *= -1;
+		}
+		
+	}, 30);
+}
+		
+	</script>
+</html>

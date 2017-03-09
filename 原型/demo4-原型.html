@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+// 构造方法
+function Student() {
+	 
+}
+
+// 所有对象都是共用同一个方法
+// 构造方法中，自带了原型的属性，是一个对象
+Student.prototype.show = function() {
+	console.log("自我介绍！");
+}
+
+
+// 两个学生对象 都是共用同一个 show 这个方法
+var st = new Student();
+
+new Student().show();
+new Student().show();
+
+</script>		
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+
+//function Person() {
+//	this.name = "张三";
+//}
+//
+//
+//// 员工 也是一个人
+//function Employee() {
+//}
+//
+//// 继承 人类
+////                   {name: "张三"}
+//// 通过修改子类的原型对象，让它等于一个父类对象，这样具有了父类对象的所有属性和方法
+//Employee.prototype = new Person();
+//		
+//
+//// 创建员工
+//var zhangsan = new Employee(); 
+//
+//// zhangsan.name
+////  1、在自己的对象中，寻找 name。 没有！
+////  2、在 Employee的原型对象中寻找  name， 找到了 name，所以输出了 张三
+//
+//console.log(zhangsan.name); // 张三
+
+function P(){
+	this.name = "mm";
+};
+
+function E(){
+	
+};
+
+E.prototype = new P();
+var e = new E();
+console.log(e.name);
+
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

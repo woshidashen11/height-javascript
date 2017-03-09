@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<style>
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+#main {
+	margin: 0 auto;
+	width: 600px;
+	height: 300px;
+	overflow: hidden;
+	position: relative; 
+}
+
+ul {
+	list-style: none;
+	position: absolute;
+	top: 0px;
+	left: 0;
+	/*top: -300px;*/
+}
+
+li img {
+	width: 600px;
+	height: 300px;
+	display: block;
+}	
+</style>		
+		
+	</head>
+	<body>
+		
+		
+		<div id="main">
+			<ul id="list">
+				<li><img src="img/1.jpg" ></li>
+				<li><img src="img/2.jpg" ></li>
+				<li><img src="img/3.jpg" ></li>
+			</ul>
+		</div>
+		
+<script type="text/javascript" src="js/move.js" ></script>
+<script>
+
+var oUl = document.getElementById("list");
+
+
+var i = 0; // 代表当前显示图片的下标
+
+setInterval(function() {
+
+	i++; // 指向下一张
+	
+	var iTop = i * 300 * -1;
+	
+	startMove(oUl, "top", iTop);
+	
+	if (i == 2) {
+		i = -1;
+	}
+}, 3000);
+
+
+</script>
+
+	</body>
+</html>

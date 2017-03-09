@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul, li {
+				list-style: none;
+			}
+			
+			#list li {
+				width: 150px;
+				height: 25px;
+				background: url(images/images1/bg.gif) repeat-x;
+				font-size: 13px;
+				line-height: 25px;
+				margin-bottom: 5px;
+				border: 1px solid #ccc;
+				position: relative;
+				cursor: pointer;
+				padding: 0 6px;
+			}
+			
+			#list li span {
+				width: 9px;
+				height: 8px;
+				background: url(images/images1/ico.gif);
+				position: absolute;
+				right: 20px;
+				top: 8px;
+			}
+			
+		</style>
+		
+<script type="text/javascript" src="js/day20-move.js" ></script>
+
+		<script>
+
+// 【练习】
+//   竖排导航:  
+//       当鼠标移入某个菜单选项时, 
+//       动画拉长该选项(同时改变padingLeft和padingRight==>30px)
+
+onload = function() {
+	var oUl = document.getElementById("list");
+	var allLi = oUl.getElementsByTagName("li");
+	
+	for (var i = 0; i < allLi.length; i++) {
+		allLi[i].onmouseover = function() {
+			startMove(this, {"paddingLeft": 30, "paddingRight": 30});
+		}
+		
+		allLi[i].onmouseout = function() {
+			startMove(this, {"paddingLeft": 6, "paddingRight": 6});
+		}
+	}
+	
+}
+
+
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<li>首页<span></span></li>
+			<li>千锋精品课程<span></span></li>
+			<li>js相关知识<span></span></li>
+			<li>关于我们<span></span></li>
+			<li>联系我们<span></span></li>
+		</ul>
+	</body>
+</html>

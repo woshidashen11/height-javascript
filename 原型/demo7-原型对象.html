@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+
+<script>
+
+// Array 是构造方法名
+//var arr = new Array();
+//
+//console.log( arr.lengthXXXXXXXX ); // undefined
+//
+//// length 是 arr 对象中的属性
+//console.log( arr.length );
+
+
+//Array.prototype.lengthXXXXXXXX = "原型对象中新增加的属性"
+//
+//// Array 是构造方法名
+//var arr = new Array();
+//
+//// lengthXXXXXXXX  属性的查找流程
+////  1、自己对象找不到
+////  2、自己的原型对象中， 因为我们自己新增了属性，所以找到了，直接返回了。
+//console.log( arr.lengthXXXXXXXX ); // 原型对象中新增加的属性
+
+
+
+//var arr = [1, 2, 3]; // 数组对象
+//
+//// 数组的原型对象中，新增了一个方法 mysum
+//Array.prototype.mysum = function() {
+//	
+//	// 例子中，是 arr 调用的，所以 self 就是 arr
+//	var self = this; // 谁调用的这个函数，就是谁
+//	
+//	var sum = 0;
+//	for (var i = 0; i < self.length; i++) {
+//		sum += self[i];
+//	}
+//	
+//	return sum;
+//}
+//// 调用 arr 对象中 mysum 方法
+//console.log(   arr.mysum() );  
+
+
+//// toString 是 arr 对象的方法
+//console.log(   arr.toString() );
+
+//var arr2 = [23423,1231,1231,3123,1231412,31];
+//
+//console.log(arr2.mysum());
+
+
+
+
+//var str = new String("I love");
+//
+//// 在 字符串 String 类中新增一个方法  xxxxx, 返回 在当前字符串后面拼接 money
+//
+//String.prototype.xxxxx = function() {
+//	return this + " money";
+//}
+//
+//// I love money
+//console.log( str.xxxxx()  );
+//console.log( "You love ".length );
+//console.log( "You love ".xxxxx() );
+
+
+
+var d1 = new Date();
+
+Date.prototype.print = function() {
+	var str = "";
+	str += this.getFullYear();  // 年
+	str += "-";  
+	str += d1.getMonth() + 1 ;  // 月份
+	str += "-";  
+	str += d1.getDate();  // 日
+	
+	console.log(str); 
+}
+
+d1.print();  // 2016-10-12
+
+
+var d2 = new Date();
+
+d2.setFullYear(1996);
+
+//print 中的this是 d2     
+d2.print(); // 1996-10-12
+
+
+
+
+</script>
+	
+</html>

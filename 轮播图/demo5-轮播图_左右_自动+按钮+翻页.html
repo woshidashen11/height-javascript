@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			
+			ul, li {
+				list-style: none;
+			}
+			
+			#box {
+				width: 600px;
+				height: 300px;
+				position: relative;
+				overflow: hidden;
+				margin: 10px auto;
+			}
+			
+			#list {
+				height: 300px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			#list li {
+				width: 600px;
+				height: 300px;
+				float: left;
+				
+				/* 【注意】 li 需要设置浮动，
+				 * 同时为了浮动成功，必须设置 ul 的宽度要给够*/
+			}
+			
+			#list img {
+				width: 600px;
+				height: 300px;
+			}
+			
+			#list2 {
+				width: 70px;
+				height: 15px;
+				position: absolute;
+				right: 20px;
+				bottom: 20px;
+			}
+			
+			#list2 li {
+				width: 15px;
+				height: 15px;
+				background: yellow;
+				border: 1px solid black;
+				float: left;
+				margin-left: 5px;
+				text-align: center;
+				line-height: 15px;
+				cursor: pointer;
+			}
+			
+		</style>
+
+<script type="text/javascript" src="js/move.js" ></script>
+
+		<script>
+
+onload = function() {
+	
+	// 获取 ul
+	var oUl = document.getElementById("list");
+	
+	oUl.innerHTML += oUl.innerHTML; // 复制
+	
+	// 找到ul中所有的li
+	var allLi = oUl.getElementsByTagName("li");
+	
+	// 一个图片的宽度
+	var width = allLi[0].offsetWidth;
+	
+	// 【设置oUl的宽度，要给够】
+	oUl.style.width = width * allLi.length + "px";
+	
+	var t = 3000;
+	var timer = setInterval(move, t);
+	
+	var i = 0;
+	// 动画切换到下一张图片
+	function move() {
+		
+		// 关闭定时器，确保当前只有一个定时器
+		clearInterval(timer); 
+		
+		i++; // 指向下一张
+		
+		var iLeft = -1 * i * width;
+		
+		// 动画切换
+		startMove(oUl, "left", iLeft, function() {
+			
+			// 下标到达最后一张
+			if (i >= allLi.length/2) {
+				i = 0;
+				oUl.style.left = "0px"; // 瞬间切换到0张
+			}
+			
+			// 动画完成，重新开启定时器
+			timer = setInterval(move, t);
+		});
+	}
+	
+}
+		</script>
+		
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li><img src="img/1.jpg" /></li>
+				<li><img src="img/2.jpg" /></li>
+				<li><img src="img/3.jpg" /></li>
+			</ul>
+			<ul id="list2">
+				<li style="background: red;">1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<a href="#" id="prePage">上一页</a> <a href="#" id="nextPage">下一页</a> 
+		
+	</body>
+</html>

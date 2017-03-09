@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<style>
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+#main {
+	margin: 0 auto;
+	width: 600px;
+	height: 300px;
+	overflow: hidden;
+	position: relative; 
+}
+
+ul {
+	list-style: none;
+	position: absolute;
+	top: 0px;
+	left: 0;
+	/*top: -300px;*/
+}
+
+li img {
+	width: 600px;
+	height: 300px;
+	display: block;
+}	
+</style>		
+		
+	</head>
+	<body>
+		
+		
+		<div id="main">
+			<ul id="list">
+				<li><img src="img/1.jpg" ></li>
+				<li><img src="img/2.jpg" ></li>
+				<li><img src="img/3.jpg" ></li>
+			</ul>
+		</div>
+		
+<script type="text/javascript" src="js/move.js" ></script>
+<script>
+
+//var oUl = document.getElementById("list");
+//
+//oUl.innerHTML += oUl.innerHTML;
+//
+//var allLi = oUl.getElementsByTagName("li");
+//
+//var i = 0; // 代表当前显示图片的下标
+//
+//var t = 1000;
+//
+//var timer = setInterval(move, t);
+//
+//function move() {
+//	clearInterval(timer); // 关闭之前的定时器
+//
+//	i++; // 指向下一张
+//	
+//	var iTop = i * 300 * -1;
+//	
+//	// 执行缓冲动画
+//	startMove(oUl, "top", iTop, function() {
+//	
+//	
+//		if (i == allLi.length/2) {
+//			i = 0;
+//			oUl.style.top = "0px"; // 瞬间回到第0张
+//		}
+//		
+//		// 重新开启定时器
+//		timer = setInterval(move, t);
+//	});
+//}
+
+   var oUl = document.getElementById("list");
+    oUl.innerHTML += oUl.innerHTML;
+   var oLi = document.getElementsByTagName("li");
+   var i = 0 ;
+   var t = 2000 ;
+   var timer = setInterval(move,t)
+   function move(){
+   	  clearInterval(timer);
+   	  i++;
+   	  var iTarge = i *300 *(-1);
+   	  startMove(oUl,"top",iTarge,function(){
+   	  	if(i == oLi.length/2){
+   	  	i = 0;
+   	  	oUl.style.top = "0px" ;
+   	  }
+   	  })
+   	  
+   	  timer = setInterval(move,t)
+   }
+
+</script>
+
+	</body>
+</html>

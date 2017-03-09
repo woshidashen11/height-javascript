@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				width: 50px;
+				height: 50px;
+				background: red;
+				border-radius: 50%;
+				position: absolute;
+				left: 50px;
+				top: 200px;
+			}
+		</style>
+		
+		<script>
+
+// 练习：
+//    实现小球上下跳动，直到停下来
+//  思路：
+//    1、先往上走 (speed = -20)
+//    2、 定时器不断增加速度值 (speed++)
+//    3、判断是否到地面
+
+// 扩展：  实现抛物运动
+//   思路： 再添加一个水平方向的匀速运动
+
+		
+onload = function() {
+	//红色的球
+	var oBox = document.getElementById("box");
+	
+	var xSpeed = 2;   // x轴的速度
+	var ySpeed = -20; // y轴的速度
+	
+	setInterval(function() {
+		ySpeed++;
+		
+		oBox.style.top = oBox.offsetTop + ySpeed + "px";
+		oBox.style.left = oBox.offsetLeft + xSpeed + "px";
+		
+		var maxHeight = document.documentElement.clientHeight - oBox.offsetHeight;
+		
+		if (ySpeed > 0 && oBox.offsetTop >= maxHeight) {
+			oBox.style.top = maxHeight + "px"; // 落在地面上
+			
+			ySpeed *= -0.9;  // 反向 & 摩擦
+			ySpeed = parseInt(ySpeed);
+		}
+		
+		// y轴速度很小了， 并且已经到达地面
+		if (Math.abs(ySpeed) < 1 && oBox.offsetTop >= maxHeight) {
+			xSpeed = 0; // 停止
+		}
+	}, 30);
+	
+}
+		</script>
+		
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

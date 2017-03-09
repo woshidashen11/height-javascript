@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script>
+
+// 写游戏 ==> 应用程序   ==>  面向对象  (方便、快捷)
+
+// 第一步： 找对象
+// 打飞机的游戏 (找到的对象)
+//  物理引擎 对象 (管理整个游戏，包括背景、什么时候创建敌机、游戏运行位置)、
+//   自己的飞机、子弹 、敌机、 计分面板
+
+//  第二步： 实现对象
+
+//                   属性                                                                 方法
+//   子弹                            样式、位置(节点对象)              移动，爆炸
+
+// 构造方法：           因为子弹是有多个
+
+			
+		</script>
+	</head>
+	<body>
+		<div id="main_body" class="main">
+			
+		</div>
+	</body>
+
+<script src="js/GameEngine.js"></script>
+<script src="js/MyPlane.js"></script>
+<script type="text/javascript" src="js/Bullet.js" ></script>
+
+
+<script>
+
+onload = function() {
+	
+	// 启动游戏
+	gameEngine.start();
+}
+
+
+window.onblur = function() {
+	console.log("停止开火");
+	// 清除飞机开火的定时器， 停止开火
+	clearInterval(myPlane.timer); 
+}
+
+window.onfocus = function() {
+	console.log("开火");
+	// 开火
+	myPlane.fire();
+}
+
+</script>	
+	
+</html>

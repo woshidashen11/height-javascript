@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<script>
+
+function Cat() {
+	this.fur = "红色";
+	
+	console.log(this); 
+}
+
+var obj = {};
+
+//console.log(obj.fur); // undefined;
+
+// call 是所有构造方法中自带的一个函数
+//       第1个参数：  对象
+//       后面的参数，是构造方法自己的参数
+// 作用，将 第一个参数对象，替换成 构造方法中的 this，称为 对象冒充
+Cat.call(obj);
+
+console.log(obj.fur); // 红色
+
+//var cat = new Cat();
+
+
+
+</script>		
+		
+	</head>
+	<body>
+	</body>
+</html>
